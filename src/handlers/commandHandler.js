@@ -3,6 +3,7 @@ const path = require('path');
 const { EmbedBuilder } = require('discord.js');
 const { loadLanguages, getLanguage, t } = require('../handlers/languageHandler');
 const dbServerData = require('../models/dbServerData');
+const { hasFakePermission } = require('../handlers/fakePermissionsHandler');
 
 function loadCommands(client) {
     function readCommands(dir) {
@@ -64,13 +65,22 @@ function loadCommands(client) {
 
         const language = await getLanguage(message.guild.id);
 
-        // Check for permissions
-        if (command.permissions && !message.member.permissions.has(command.permissions)) {
-            const embed = new EmbedBuilder()
-                .setColor("#faa81a")
-                .setDescription(t('no_permission', language, { permission: command.permissions }));
-            return message.channel.send({ embeds: [embed] });
+        // Check for fake permissions
+        if (command.permissions && command.permissions.length > 0) {
+            for (const permission of command.permissions) {
+                if (!(await hasFakePermission(message.member, permission))) {
+                    // Check for permissions
+                    if (command.permissions && !message.member.permissions.has(command.permissions)) {
+                        const embed = new EmbedBuilder()
+                            .setColor("#faa81a")
+                            .setDescription(t('handler_no_permission', language, { permission: command.permissions }));
+                        return message.channel.send({ embeds: [embed] });
+                    }
+                }
+            }
         }
+
+
 
         // Check for required parameters
         if (command.parameters && command.parameters.length > 0 && args.length < command.parameters.length) {

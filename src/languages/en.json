@@ -2,23 +2,34 @@
     "global_error_description": "<:deny:1276289955920085122> There was an error while executing the command. Please contact discord.gg/shukketsu",
     "page_footer": "Page {{currentPage}} of {{totalPages}} | Showing {{start}}-{{end}} of {{totalEntries}} entries",
 
-    "handler_no_permission": "<:deny:1276289955920085122> You do not have permission to use this command.\nRequired permission: {{permission}}",
+    "handler_no_permission": "<:warning:1276238448189116517> You do not have permission to use this command.\nRequired permission: `{{permission}}`",
     "handler_no_parameters": "No parameters provided.",
     "handler_no_syntax_example": "No syntax and example provided.",
 
     "ping_description": "Rest ping is `{{ping}}ms`",
 
-    "languageSet_invalid_language": "Invalid language. Available languages are: {{languages}}",
-    "languageSet_set_description": "Language has been set to {{language}}.",
+    "languageSet_invalid_language": "<:warning:1276238448189116517> Invalid language. Available languages are: {{languages}}",
+    "languageSet_set_description": "<:approve:1276238417427959818> Language has been set to {{language}}.",
 
-    "aliasAdd_command_not_found": "Command `{{commandName}}` not found.",
-    "aliasAdd_alias_too_long": "Alias is too long. Maximum length is {{maxLength}} characters.",
-    "aliasAdd_too_many_aliases": "Too many aliases. Maximum allowed is {{maxAliases}}.",
-    "aliasAdd_alias_added": "Alias `{{alias}}` has been added for command `{{commandName}}`.",
+    "aliasAdd_command_not_found": "<:warning:1276238448189116517> Command `{{commandName}}` not found.",
+    "aliasAdd_alias_too_long": "<:warning:1276238448189116517> Alias is too long. Maximum length is {{maxLength}} characters.",
+    "aliasAdd_too_many_aliases": "<:warning:1276238448189116517> Too many aliases. Maximum allowed is {{maxAliases}}.",
+    "aliasAdd_alias_added": "<:approve:1276238417427959818> Alias `{{alias}}` has been added for command `{{commandName}}`.",
 
-    "aliasRemove_alias_not_found": "Alias `{{alias}}` not found for command `{{commandName}}`.",
-    "aliasRemove_alias_removed": "Alias `{{alias}}` has been removed for command `{{commandName}}`.",
+    "aliasRemove_alias_not_found": "<:warning:1276238448189116517> Alias `{{alias}}` not found for command `{{commandName}}`.",
+    "aliasRemove_alias_removed": "<:approve:1276238417427959818> Alias `{{alias}}` has been removed for command `{{commandName}}`.",
     
-    "aliasList_no_aliases": "No aliases found.",
-    "aliasList_all_aliases": "Here are all the command aliases:"
+    "aliasList_no_aliases": "<:warning:1276238448189116517> No aliases found.",
+    "aliasList_all_aliases": "Here are all the command aliases:",
+
+    "fakePermsAdd_invalid_permission": "<:warning:1276238448189116517> Invalid permission.",
+    "fakePermsAdd_already_exists": "<:warning:1276238448189116517> Fake permission `{{permission}}` for role {{role}} already exists.",
+    "fakePermsAdd_permission_added": "<:approve:1276238417427959818> Fake permission `{{permission}}` added to role `{{role}}`.",
+
+    "fakePermRemove_permission_removed": "<:approve:1276238417427959818> Fake permission `{{permission}}` removed from role `{{role}}`.",
+
+    "fakePermList_no_fake_perms": "<:warning:1276238448189116517> No fake permissions found.",
+    "fakePermList_title": "Fake Permissions",
+
+    "fakePermissionReset_reset": "<:approve:1276238417427959818> All fake permissions have been reset."
 }
