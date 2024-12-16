@@ -1,0 +1,24 @@
+{
+    "global_error_description": "<:deny:1276289955920085122> There was an error while executing the command. Please contact discord.gg/shukketsu",
+    "page_footer": "Page {{currentPage}} of {{totalPages}} | Showing {{start}}-{{end}} of {{totalEntries}} entries",
+
+    "handler_no_permission": "<:deny:1276289955920085122> You do not have permission to use this command.\nRequired permission: {{permission}}",
+    "handler_no_parameters": "No parameters provided.",
+    "handler_no_syntax_example": "No syntax and example provided.",
+
+    "ping_description": "Rest ping is `{{ping}}ms`",
+
+    "languageSet_invalid_language": "Invalid language. Available languages are: {{languages}}",
+    "languageSet_set_description": "Language has been set to {{language}}.",
+
+    "aliasAdd_command_not_found": "Command `{{commandName}}` not found.",
+    "aliasAdd_alias_too_long": "Alias is too long. Maximum length is {{maxLength}} characters.",
+    "aliasAdd_too_many_aliases": "Too many aliases. Maximum allowed is {{maxAliases}}.",
+    "aliasAdd_alias_added": "Alias `{{alias}}` has been added for command `{{commandName}}`.",
+
+    "aliasRemove_alias_not_found": "Alias `{{alias}}` not found for command `{{commandName}}`.",
+    "aliasRemove_alias_removed": "Alias `{{alias}}` has been removed for command `{{commandName}}`.",
+    
+    "aliasList_no_aliases": "No aliases found.",
+    "aliasList_all_aliases": "Here are all the command aliases:"
+}

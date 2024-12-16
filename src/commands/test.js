@@ -26,7 +26,7 @@ module.exports = {
     permission: 'Administrator',
     async execute(message, args) {
         if (args.length < 2) {
-            return message.reply('Please provide a channel ID and a status.');
+            return message.channel.send('Please provide a channel ID and a status.');
         }
 
         const channelId = args[0];
@@ -37,13 +37,13 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setTitle('Voice Status Updated')
                 .setDescription(`Channel ID: ${channelId}\nStatus: ${status}\nResponse: ${response}`)
-                .setColor(process.env.THEME);
+                .setColor(process.env.DEFAULT_COLOR);
 
             message.channel.send({ 
                 embeds: [embed]
             });
         } catch (error) {
-            message.reply(`Failed to update voice status: ${error.message}`);
+            message.channel.send(`Failed to update voice status: ${error.message}`);
         }
     },
 };

@@ -54,7 +54,7 @@ async function loadSlashCommands(client) {
                 .setColor('#ff6464')
                 .setDescription('<:deny:1276289955920085122> There was an error while executing this command!')
 
-            await interaction.reply({ embeds: [errorEmbed], ephemeral: true });
+            await interaction.channel.send({ embeds: [errorEmbed], ephemeral: true });
         }
     });
 }
