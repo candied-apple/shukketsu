@@ -19,10 +19,6 @@ const dbServerDataSchema = new mongoose.Schema({
         of: [String],
         default: {},
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
 });
 
 dbServerDataSchema.pre('save', function(next) {
