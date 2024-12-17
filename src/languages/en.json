@@ -31,5 +31,8 @@
     "fakePermList_no_fake_perms": "<:warning:1276238448189116517> No fake permissions found.",
     "fakePermList_title": "Fake Permissions",
 
-    "fakePermissionReset_reset": "<:approve:1276238417427959818> All fake permissions have been reset."
+    "fakePermissionReset_reset": "<:approve:1276238417427959818> All fake permissions have been reset.",
+
+    "avatar_user_not_found": "<:deny:1276289955920085122> User not found. Please mention a valid user or provide a valid user ID.",
+    "avatar_title": "{{username}}'s Avatar"
 }
