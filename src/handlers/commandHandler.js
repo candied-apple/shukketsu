@@ -5,6 +5,8 @@ const { loadLanguages, getLanguage, t } = require('../handlers/languageHandler')
 const dbServerData = require('../models/dbServerData');
 const { hasFakePermission } = require('../handlers/fakePermissionsHandler');
 
+const owners = process.env.OWNERS.split(',');
+
 function loadCommands(client) {
     function readCommands(dir) {
         const files = fs.readdirSync(dir);
@@ -65,6 +67,14 @@ function loadCommands(client) {
 
         const language = await getLanguage(message.guild.id);
 
+        // Check if the command is in the owner category
+        if (command.category === 'owner' && !owners.includes(message.author.id)) {
+            const embed = new EmbedBuilder()
+                .setColor(process.env.ERROR_COLOR)
+                .setDescription(t('handler_no_permission', language, { permission: 'Bot Owner' }));
+            return message.channel.send({ embeds: [embed] });
+        }
+
         // Check for fake permissions
         if (command.permissions && command.permissions.length > 0) {
             for (const permission of command.permissions) {
@@ -79,8 +89,6 @@ function loadCommands(client) {
                 }
             }
         }
-
-
 
         // Check for required parameters
         if (command.parameters && command.parameters.length > 0 && args.length < command.parameters.length) {

@@ -5,10 +5,12 @@ const { EmbedBuilder } = require('discord.js');
 module.exports = {
     name: 'fakepermissions reset',
     description: 'Resets all fake permissions',
+    category: 'server',
     syntax: 'fakepermissions reset',
     example: 'fakepermissions reset',
-    permissions: ['Administrator'],
     parameters: [],
+    flags: [],
+    permissions: ['Administrator'],
     async execute(message, args) {
         try {
             const language = await getLanguage(message.guild.id);

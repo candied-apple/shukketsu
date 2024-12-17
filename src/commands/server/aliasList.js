@@ -5,10 +5,12 @@ const { getLanguage, t } = require('../../handlers/languageHandler');
 module.exports = {
     name: 'alias list',
     description: 'List all aliases for all commands',
+    category: 'server',
     syntax: 'alias list',
     example: 'alias list',
-    permissions: ['Administrator'],
     parameters: [],
+    flags: [],
+    permissions: ['Administrator'],
     async execute(message) {
         const language = await getLanguage(message.guild.id);
 

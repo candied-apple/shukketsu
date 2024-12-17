@@ -5,10 +5,12 @@ const { EmbedBuilder } = require('discord.js');
 module.exports = {
     name: 'alias add',
     description: 'Add an alias for a command',
+    category: 'server',
     syntax: 'alias add <commandName> <alias>',
     example: 'alias add ping pong pong',
-    permissions: ['Administrator'],
     parameters: ['commandName', 'alias'],
+    flags: [],
+    permissions: ['Administrator'],
     async execute(message, args) {
         const commandName = args.shift();
         const alias = args.join(' ');

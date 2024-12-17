@@ -5,10 +5,12 @@ const { PermissionsBitField, EmbedBuilder } = require('discord.js');
 module.exports = {
     name: 'fakepermissions add',
     description: 'Grant a fake permission to a role',
+    category: 'server',
     syntax: 'fakepermissions add <role> <permission>',
     example: 'fakepermissions add @Moderator ban_members',
-    permissions: ['Administrator'],
     parameters: ['role', 'permission'],
+    flags: [],
+    permissions: ['Administrator'],
     async execute(message, args) {
         try {
             const role = message.mentions.roles.first();

@@ -20,7 +20,7 @@ const client = new Client({
 client.commands = new Collection();
 client.slashCommands = new Collection();
 
-// Load commands and events
+// Load commands,events and systems
 connectToDatabase();
 loadLanguages();
 loadCommands(client);

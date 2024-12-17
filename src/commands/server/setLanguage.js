@@ -5,10 +5,12 @@ const { getLanguage, t } = require('../../handlers/languageHandler');
 module.exports = {
     name: 'set language',
     description: 'Sets the language for the server.',
-    syntax:"ping",
-    example:"ping",
-    parameters:[],
-    permissions:["Administrator"],
+    category: 'server',
+    syntax: "ping",
+    example: "ping",
+    parameters: [],
+    flags: [],
+    permissions: ["Administrator"],
     async execute(message, args) {
         const language = await getLanguage(message.guild.id);
 

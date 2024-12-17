@@ -5,10 +5,12 @@ const { EmbedBuilder } = require('discord.js');
 module.exports = {
     name: 'fakepermissions list',
     description: 'List all fake permissions',
+    category: 'server',
     syntax: 'fakepermissions list [role]',
     example: 'fakepermissions list @Moderator',
-    permissions: ['Administrator'],
     parameters: ['role'],
+    flags: [],
+    permissions: ['Administrator'],
     async execute(message, args) {
         try {
             const role = message.mentions.roles.first();

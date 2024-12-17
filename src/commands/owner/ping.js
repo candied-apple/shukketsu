@@ -1,14 +1,16 @@
 const { EmbedBuilder, PartialGroupDMChannel } = require('discord.js');
 const axios = require('axios');
-const { getLanguage, t } = require('../handlers/languageHandler');
+const { getLanguage, t } = require('../../handlers/languageHandler');
 
 module.exports = {
     name: 'ping',
     description: 'Replies with Pong along with the REST ping!',
-    syntax:"ping",
-    example:"ping",
-    parameters:[],
-    permissions:["Administrator"],
+    category: 'owner',
+    syntax: "ping",
+    example: "ping",
+    parameters: [],
+    flags: [],
+    permissions: ["Administrator"],
     async execute(message, args) {
         const restPingStart = Date.now();
         await axios.get('https://discord.com/api/v10/gateway');
@@ -19,7 +21,7 @@ module.exports = {
             .setDescription(t('ping_description', language, { ping: restPing }))
             .setColor(process.env.DEFAULT_COLOR);
 
-        message.channel.send({ 
+        message.channel.send({
             embeds: [embed]
         });
     },

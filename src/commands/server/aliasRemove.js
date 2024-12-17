@@ -5,10 +5,12 @@ const { EmbedBuilder } = require('discord.js');
 module.exports = {
     name: 'alias remove',
     description: 'Remove an alias for a command',
+    category: 'server',
     syntax: 'alias remove <commandName> <alias>',
     example: 'alias remove ping pong',
-    permissions: ['Administrator'],
     parameters: ['commandName', 'alias'],
+    flags: [],
+    permissions: ['Administrator'],
     async execute(message, args) {
         const commandName = args.shift();
         const alias = args.join(' ');

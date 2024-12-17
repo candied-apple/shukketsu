@@ -14,7 +14,8 @@ async function connectToDatabase() {
         await mongoose.connect(mongoUri, {
             dbName: dbName,
         });
-        console.log('Connected to MongoDB');
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        console.log('Connected to MongoDB (Database:', dbName, ')');
     } catch (error) {
         console.error('Error connecting to MongoDB:', error);
     }
