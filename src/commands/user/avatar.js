@@ -4,7 +4,7 @@ const { getLanguage, t } = require('../../handlers/languageHandler');
 module.exports = {
     name: 'avatar',
     description: 'Displays the avatar of a specified user.',
-    category: 'misc',
+    category: 'user',
     syntax: 'avatar <user>',
     example: 'avatar @username',
     parameters: ['user'],

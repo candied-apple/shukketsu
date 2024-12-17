@@ -19,6 +19,21 @@ const dbServerDataSchema = new mongoose.Schema({
         of: [String],
         default: {},
     },
+    welcomeMessages: [{
+        channelId: String,
+        message: String,
+        selfDestruct: Number,
+    }],
+    goodbyeMessages: [{
+        channelId: String,
+        message: String,
+        selfDestruct: Number,
+    }],
+    boostMessages: [{
+        channelId: String,
+        message: String,
+        selfDestruct: Number,
+    }],
 });
 
 dbServerDataSchema.pre('save', function(next) {

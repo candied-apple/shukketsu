@@ -44,7 +44,7 @@ module.exports = {
                     .setDescription(description)
                     .setColor(process.env.DEFAULT_COLOR)
                     .setFooter({
-                        text: t('page_footer', language, {
+                        text: t('global_page_footer', language, {
                             currentPage: page + 1,
                             totalPages: Math.ceil(aliasesArray.length / itemsPerPage),
                             start: start + 1,

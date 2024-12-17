@@ -1,6 +1,6 @@
 {
     "global_error_description": "<:deny:1276289955920085122> There was an error while executing the command. Please contact discord.gg/shukketsu",
-    "page_footer": "Page {{currentPage}} of {{totalPages}} | Showing {{start}}-{{end}} of {{totalEntries}} entries",
+    "global_page_footer": "Page {{currentPage}} of {{totalPages}} | Showing {{start}}-{{end}} of {{totalEntries}} entries",
 
     "handler_no_permission": "<:warning:1276238448189116517> You do not have permission to use this command.\nRequired permission: `{{permission}}`",
     "handler_no_parameters": "No parameters provided.",
@@ -34,5 +34,61 @@
     "fakePermissionReset_reset": "<:approve:1276238417427959818> All fake permissions have been reset.",
 
     "avatar_user_not_found": "<:deny:1276289955920085122> User not found. Please mention a valid user or provide a valid user ID.",
-    "avatar_title": "{{username}}'s Avatar"
+    "avatar_title": "{{username}}'s Avatar",
+
+    "banner_user_not_found": "User not found.",
+    "banner_not_found": "This user does not have a banner.",
+    "banner_title": "{{username}}'s Banner",
+
+    "welcomeAdd_invalid_self_destruct": "Invalid self-destruct time. Please provide a value between 6 and 60 seconds.",
+    "welcomeAdd_provide_channel_and_message": "Please provide a channel and a welcome message.",
+    "welcomeAdd_welcome_message_limit_reached": "You have reached the limit of 3 welcome messages for this channel.",
+    "welcomeAdd_welcome_message_added": "Welcome message added to {{channel}}.",
+
+    "welcomeRemove_provide_channel_and_message_number": "Please provide a channel and the message number to remove.",
+    "welcomeRemove_no_welcome_message": "There are no welcome messages for {{channel}}.",
+    "welcomeRemove_welcome_message_removed": "Welcome message removed from {{channel}}.",
+
+    "welcomeView_provide_channel": "Please provide a channel to view welcome messages.",
+    "welcomeView_no_welcome_message": "There are no welcome messages for {{channel}}.",
+    "welcomeView_welcome_messages_for_channel": "Welcome messages for {{channel}}",
+
+    "welcomeList_no_welcome_messages": "There are no welcome messages.",
+    "welcomeList_welcome_messages_list": "List of all welcome messages",
+
+    "goodbyeAdd_invalid_self_destruct": "Please provide a valid self-destruct time between 6 and 60 seconds.",
+    "goodbyeAdd_provide_channel_and_message": "Please mention a channel and provide a goodbye message.",
+    "goodbyeAdd_goodbye_message_limit_reached": "You can only have up to 3 goodbye messages per channel.",
+    "goodbyeAdd_goodbye_message_added": "Goodbye message added to {{channel}}.",
+    
+    "goodbyeRemove_provide_channel_and_message_number": "Please mention a channel and provide a valid message number.",
+    "goodbyeRemove_no_goodbye_message": "There are no goodbye messages in {{channel}}.",
+    "goodbyeRemove_invalid_message_number": "Please provide a valid message number between 1 and {{totalMessages}}.",
+    "goodbyeRemove_goodbye_message_removed": "Goodbye message removed from {{channel}}.",
+    
+    "goodbyeView_provide_channel": "Please mention a channel to view its goodbye messages.",
+    "goodbyeView_no_goodbye_message": "There are no goodbye messages in {{channel}}.",
+    "goodbyeView_goodbye_messages_for_channel": "Goodbye messages for {{channel}}",
+    
+    "goodbyeList_no_goodbye_messages": "There are no goodbye messages.",
+    "goodbyeList_goodbye_messages_list": "List of all goodbye messages",
+
+    "boostAdd_invalid_self_destruct": "Please provide a valid self-destruct time between 6 and 60 seconds.",
+    "boostAdd_provide_channel_and_message": "Please provide a channel and a message.",
+    "boostAdd_boost_message_limit_reached": "You have reached the limit of 3 boost messages per channel.",
+    "boostAdd_boost_message_added": "Boost message added to {{channel}}.",
+
+    "boostRemove_provide_channel_and_message_number": "Please provide a valid channel and message number.",
+    "boostRemove_no_boost_message": "No boost messages found in {{channel}}.",
+    "boostRemove_invalid_message_number": "Please provide a valid message number between 1 and {{totalMessages}}.",
+    "boostRemove_boost_message_removed": "Boost message removed from {{channel}}.",
+
+    "boostView_provide_channel": "Please provide a channel.",
+    "boostView_no_boost_message": "No boost messages found in {{channel}}.",
+    "boostView_boost_messages_for_channel": "Boost messages for {{channel}}",
+
+    "boostList_no_boost_messages": "No boost messages found.",
+    "boostList_boost_messages_list": "List of all boost messages"
+
+    
 }

@@ -1,21 +1,20 @@
-
 # Language System Documentation
 
 ## Overview
 
 The language system allows you to manage multiple languages for your bot. It supports loading language files, fetching the language setting for each server from the database, and interpolating variables in translation strings.
 
-
 ## Language Files
 
-Create language files in the `src/languages/` directory. Each file should be a JSON file containing key-value pairs for translations.
+Create language files in the `src/languages/` directory. Each file should be a JSON file containing key-value pairs for translations. When adding translations, the key needs to start with the command name. For example, if the command file name is `welcomeAdd.js`, the key should start like `welcomeAdd_`, but make sure to respect keys starting with `global_`.
 
 Example `src/languages/en.json`:
 ```json
 {
     "greeting": "Hello!",
     "farewell": "Goodbye!",
-    "rest_ping": "Rest ping is {{ping}}ms"
+    "ping_rest": "Rest ping is {{ping}}ms",
+    "welcomeAdd_description": "This is the description for the welcomeAdd command."
 }
 ```
 
@@ -25,9 +24,7 @@ The `languageHandler.js` file is responsible for loading languages, fetching the
 
 ### Functions
 
-- `loadLanguages()`: Loads all language files from the 
-languages
-directory.
+- `loadLanguages()`: Loads all language files from the languages directory.
 - `getLanguage(serverId)`: Fetches the language setting for the specified server from the database.
 - `t(key, language, variables = {})`: Returns the translated string for the given key and language, with optional variable interpolation.
 
@@ -35,8 +32,7 @@ directory.
 
 ### Loading Languages
 
-In your 
-index.js, load the languages when initializing the bot:
+In your `index.js`, load the languages when initializing the bot:
 
 ```js
 const { loadLanguages } = require('./handlers/languageHandler');
@@ -47,8 +43,7 @@ loadLanguages();
 
 In your command files, use the `getLanguage` and `t` functions to fetch the language setting and get translated strings.
 
-Example 
-ping.js:
+Example `ping.js`:
 ```js
 const { EmbedBuilder } = require('discord.js');
 const axios = require('axios');
@@ -66,7 +61,7 @@ module.exports = {
         const language = await getLanguage(message.guild.id);
         const embed = new EmbedBuilder()
             .setTitle(t('greeting', language))
-            .setDescription(t('rest_ping', language, { ping: restPing }))
+            .setDescription(t('ping_rest', language, { ping: restPing }))
             .setColor(process.env.DEFAULT_COLOR);
 
         message.channel.send({ 

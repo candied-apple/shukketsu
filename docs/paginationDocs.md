@@ -30,7 +30,7 @@ function generateEmbed(data, page, itemsPerPage, language) {
         .setTitle('Paginated Data')
         .setColor(process.env.DEFAULT_COLOR)
         .setFooter({
-            text: t('page_footer', language, {
+            text: t('global_page_footer', language, {
                 currentPage: page + 1,
                 totalPages: Math.ceil(data.length / itemsPerPage),
                 start: start + 1,
