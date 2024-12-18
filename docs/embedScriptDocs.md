@@ -26,8 +26,8 @@ The embed scripting system allows you to create dynamic embeds and messages usin
 - **Embed Titles:** Limited to 256 characters.
 - **Embed Descriptions:** Limited to 4096 characters.
 - **Fields:** Up to 25 fields per embed.
-  - **Field Name:** Limited to 256 characters.
-  - **Field Value:** Limited to 1024 characters.
+- **Field Name:** Limited to 256 characters.
+- **Field Value:** Limited to 1024 characters.
 - **Footer Text:** Limited to 2048 characters.
 - **Author Name:** Limited to 256 characters.
 - **Total Embed Characters:** The sum of all characters from all embed structures must not exceed 6000 characters.
