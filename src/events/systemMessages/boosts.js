@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 const dbServerData = require('../../models/dbServerData');
-const { replaceVariables } = require('../../handlers/variableHandler');
+const { parseEmbedScript } = require('../../handlers/embedScriptHandler');
 
 module.exports = {
     name: 'guildMemberUpdate',
@@ -21,9 +21,9 @@ module.exports = {
                             channel: channel
                         };
 
-                        const boostMessage = replaceVariables(msg.message, data);
+                        const { embed, messageContent } = parseEmbedScript(msg.message, data);
 
-                        const sentMessage = await channel.send(boostMessage);
+                        const sentMessage = await channel.send({ content: messageContent, embeds: [embed] });
 
                         if (msg.selfDestruct > 0) {
                             setTimeout(() => {
