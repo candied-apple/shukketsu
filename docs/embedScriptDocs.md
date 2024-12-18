@@ -22,6 +22,17 @@ The embed scripting system allows you to create dynamic embeds and messages usin
 - `footer` - The footer information. (e.g., `{footer: FooterText && FooterIcon}`)
 - `message` - The message content. (e.g., `{message: Welcome to {guild.name}, {user.mention}}`)
 
+#### Limits
+- **Embed Titles:** Limited to 256 characters.
+- **Embed Descriptions:** Limited to 4096 characters.
+- **Fields:** Up to 25 fields per embed.
+  - **Field Name:** Limited to 256 characters.
+  - **Field Value:** Limited to 1024 characters.
+- **Footer Text:** Limited to 2048 characters.
+- **Author Name:** Limited to 256 characters.
+- **Total Embed Characters:** The sum of all characters from all embed structures must not exceed 6000 characters.
+- **Normal Messages:** Limited to 2000 characters.
+
 #### Example Script
 ```plaintext
 {embed}$v{timestamp}$v{author: candiedapple && https://cdn.discordapp.com/avatars/292701645391921152/a_4fa2ba45f98e7febeff76173ce1a4169.gif?size=4096}$v{title: Welcome}$v{description: Welcome to the server!}$v{field: Field1 && value: Field1Value && inline}$v{field: Field2 && value: Field2Value && inline}$v{field: Field3 && value: Field3Value}$v{color: #d8e205}$v{footer: FooterText && FooterIconURL}$v{message: Welcome to {guild.name}, {user.mention}}

@@ -1,22 +1,31 @@
 const { EmbedBuilder } = require('discord.js');
 const { replaceVariables } = require('./variableHandler');
 
+const MAX_TITLE_LENGTH = 256;
+const MAX_DESCRIPTION_LENGTH = 4096;
+const MAX_FIELDS = 25;
+const MAX_FIELD_NAME_LENGTH = 256;
+const MAX_FIELD_VALUE_LENGTH = 1024;
+const MAX_FOOTER_TEXT_LENGTH = 2048;
+const MAX_AUTHOR_NAME_LENGTH = 256;
+const MAX_TOTAL_CHARACTERS = 6000;
+const MAX_MESSAGE_LENGTH = 2000;
+
 function parseEmbedScript(script, data) {
     const embed = new EmbedBuilder();
     let messageContent = '';
-    
+    let totalCharacters = 0;
+
     if (!script) {
         return { embed: null, messageContent: '' };
     }
 
-    // Remove {embed} from the start if present
     const cleanScript = script.startsWith('{embed}') ? script.slice(7) : script;
     const parameters = cleanScript.split('$v');
 
     parameters.forEach(param => {
         if (!param) return;
 
-        // Updated regex to handle multiline content
         const matches = param.match(/^\{(.+?):\s*([\s\S]+?)\}$/);
         if (!matches) return;
 
@@ -32,12 +41,20 @@ function parseEmbedScript(script, data) {
                 if (color) embed.setColor(color);
                 break;
             case 'title':
-                const title = replaceVariables(value, data)?.trim();
-                if (title) embed.setTitle(title);
+                let title = replaceVariables(value, data)?.trim();
+                if (title) {
+                    title = title.slice(0, MAX_TITLE_LENGTH);
+                    totalCharacters += title.length;
+                    embed.setTitle(title);
+                }
                 break;
             case 'description':
-                const description = replaceVariables(value, data)?.trim();
-                if (description) embed.setDescription(description);
+                let description = replaceVariables(value, data)?.trim();
+                if (description) {
+                    description = description.slice(0, MAX_DESCRIPTION_LENGTH);
+                    totalCharacters += description.length;
+                    embed.setDescription(description);
+                }
                 break;
             case 'image':
                 const image = replaceVariables(value, data)?.trim();
@@ -58,18 +75,23 @@ function parseEmbedScript(script, data) {
                 const resolvedAuthorIcon = authorIcon ? replaceVariables(authorIcon, data) : undefined;
                 const resolvedAuthorUrl = authorUrl ? replaceVariables(authorUrl, data) : undefined;
 
-                const authorData = {
-                    name: replaceVariables(authorName, data),
+                let authorData = {
+                    name: replaceVariables(authorName, data)?.slice(0, MAX_AUTHOR_NAME_LENGTH),
                     iconURL: resolvedAuthorIcon && isValidUrl(resolvedAuthorIcon) ? resolvedAuthorIcon : undefined,
                     url: resolvedAuthorUrl && isValidUrl(resolvedAuthorUrl) ? resolvedAuthorUrl : undefined
                 };
 
-                if (authorData.name) embed.setAuthor(authorData);
+                if (authorData.name) {
+                    totalCharacters += authorData.name.length;
+                    embed.setAuthor(authorData);
+                }
                 break;
             case 'field':
+                if (embed.data.fields && embed.data.fields.length >= MAX_FIELDS) break;
+
                 const fieldParams = value.split('&&').map(s => s.trim());
-                const fieldName = fieldParams[0];
-                const fieldValue = fieldParams[1]?.replace(/^value:\s*/, '').trim();
+                const fieldName = fieldParams[0]?.slice(0, MAX_FIELD_NAME_LENGTH);
+                const fieldValue = fieldParams[1]?.replace(/^value:\s*/, '').trim().slice(0, MAX_FIELD_VALUE_LENGTH);
                 const isInline = !fieldParams.some(param => 
                     param.toLowerCase().includes('noninline')
                 ) && fieldParams.some(param => 
@@ -77,6 +99,7 @@ function parseEmbedScript(script, data) {
                 );
 
                 if (fieldName && fieldValue) {
+                    totalCharacters += fieldName.length + fieldValue.length;
                     embed.addFields({
                         name: replaceVariables(fieldName, data),
                         value: replaceVariables(fieldValue, data),
@@ -89,20 +112,28 @@ function parseEmbedScript(script, data) {
                 const resolvedFooterIcon = footerIcon ? replaceVariables(footerIcon, data) : undefined;
 
                 if (footerText) {
+                    const truncatedFooterText = replaceVariables(footerText, data)?.slice(0, MAX_FOOTER_TEXT_LENGTH);
+                    totalCharacters += truncatedFooterText.length;
                     embed.setFooter({
-                        text: replaceVariables(footerText, data),
+                        text: truncatedFooterText,
                         iconURL: resolvedFooterIcon && isValidUrl(resolvedFooterIcon) ? resolvedFooterIcon : undefined
                     });
                 }
                 break;
             case 'message':
-                const message = replaceVariables(value, data)?.trim();
-                if (message) messageContent = message;
+                let message = replaceVariables(value, data)?.trim();
+                if (message) {
+                    message = message.slice(0, MAX_MESSAGE_LENGTH);
+                    messageContent = message;
+                }
                 break;
         }
     });
 
-    // Check if embed has any content
+    if (totalCharacters > MAX_TOTAL_CHARACTERS) {
+        return { embed: null, messageContent: 'Embed content exceeds the maximum allowed character limit.' };
+    }
+
     const hasEmbedContent = Object.keys(embed.data).length > 0;
     return {
         embed: hasEmbedContent ? embed : null,
