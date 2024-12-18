@@ -65,7 +65,16 @@ function parseEmbedScript(script, data) {
                 if (thumbnail && isValidUrl(thumbnail)) embed.setThumbnail(thumbnail);
                 break;
             case 'timestamp':
-                embed.setTimestamp();
+                const timestampValue = replaceVariables(value, data)?.trim();
+                if (timestampValue === 'current') {
+                    embed.setTimestamp();
+                } else {
+                    const [month, day, year, hour, minute] = timestampValue.split('-').map(Number);
+                    const date = new Date(year, month - 1, day, hour, minute);
+                    if (!isNaN(date.getTime())) {
+                        embed.setTimestamp(date);
+                    }
+                }
                 break;
             case 'author':
                 const [authorName, ...authorRest] = value.split('&&').map(s => s.trim());
@@ -92,9 +101,9 @@ function parseEmbedScript(script, data) {
                 const fieldParams = value.split('&&').map(s => s.trim());
                 const fieldName = fieldParams[0]?.slice(0, MAX_FIELD_NAME_LENGTH);
                 const fieldValue = fieldParams[1]?.replace(/^value:\s*/, '').trim().slice(0, MAX_FIELD_VALUE_LENGTH);
-                const isInline = !fieldParams.some(param => 
+                const isInline = !fieldParams.some(param =>
                     param.toLowerCase().includes('noninline')
-                ) && fieldParams.some(param => 
+                ) && fieldParams.some(param =>
                     param.toLowerCase().includes('inline')
                 );
 
