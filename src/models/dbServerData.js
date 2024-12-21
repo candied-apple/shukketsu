@@ -70,6 +70,18 @@ const dbServerDataSchema = new mongoose.Schema({
     levelStackroles: {
         type: Boolean,
         default: true
+    },
+    voicemasterchannelid: {
+        type: String,
+        default: null
+    },
+    voicemastercategoryid: {
+        type: String,
+        default: null
+    },
+    voicemasterinterfaceid: {
+        type: String,
+        default: null
     }
 });
 

@@ -109,7 +109,7 @@ function loadCommands(client) {
         }
     
         try {
-            command.execute(message, args);
+            await command.execute(message, args, client); // Pass the client object here
         } catch (error) {
             console.error(error);
             const embed = new EmbedBuilder()

@@ -24,6 +24,8 @@
     "aliasList_no_aliases": "<:warning:1276238448189116517> No aliases found.",
     "aliasList_all_aliases": "Here are all the command aliases:",
 
+    "aliasReset_success": "<:approve:1276238417427959818> All aliases have been successfully reset.",
+
     "fakePermsAdd_invalid_permission": "<:warning:1276238448189116517> Invalid permission.",
     "fakePermsAdd_already_exists": "<:warning:1276238448189116517> Fake permission `{{permission}}` for role {{role}} already exists.",
     "fakePermsAdd_permission_added": "<:approve:1276238417427959818> Fake permission `{{permission}}` added to role `{{role}}`.",
@@ -39,7 +41,7 @@
     "avatar_title": "{{username}}'s Avatar",
 
     "banner_user_not_found": "<:warning:1276238448189116517> User not found.",
-    "banner_not_found": "This user does not have a banner.",
+    "banner_not_found": "<:warning:1276238448189116517> This user does not have a banner.",
     "banner_title": "{{username}}'s Banner",
 
     "welcomeAdd_invalid_self_destruct": "<:warning:1276238448189116517> Invalid self-destruct time. Please provide a value between 6 and 60 seconds.",
@@ -172,8 +174,45 @@
 
     "levelsSync_success": "<:approve:1276238417427959818> Member level roles have been successfully updated.",
 
-    "setxp_success": "<:approve:1276238417427959818> Successfully set {{user}}'s experience to {{xp}}. New level: {{level}}.",
-    "setxp_user_not_found": "<:warning:1276238448189116517> User not found in the database."
+    "setlevel_invalid_arguments": "<:warning:1276238448189116517> Invalid arguments. Please mention a user and provide a valid level.",
+    "setlevel_success": "<:approve:1276238417427959818> Successfully set {{user}}'s level to {{level}}.",
 
+    "setxp_invalid_arguments": "<:warning:1276238448189116517> Invalid arguments. Please mention a user and provide a valid amount of XP.",
+    "setxp_success": "<:approve:1276238417427959818> Successfully set {{user}}'s XP to {{xp}} and level to {{level}}.",
+
+    "removexp_invalid_arguments": "<:warning:1276238448189116517> Invalid arguments. Please mention a user and provide a valid amount of XP to remove.",
+    "removexp_success": "<:approve:1276238417427959818> Successfully removed {{xp}} XP from {{user}}. New level is {{level}}.",
+
+    "voicemasterSetup_interface_description": "<:lock:1277900826630684692> — [`lock`](https://shukketsu.app/) the voice channel\n<:unlock:1277900901872570450> — [`unlock`](https://shukketsu.app/) the voice channel\n<:ghost:1277900984894619669> — [`ghost`](https://shukketsu.app/) the voice channel\n<:unghost:1277901016519544922> — [`reveal`](https://shukketsu.app/) the voice channel\n<:user:1277901339602583563> — [`limit`](https://shukketsu.app/) set user limit\n<:plus:1277901223605043231> — [`permit`](https://shukketsu.app/) a member\n<:minus:1277901267427000400> — [`reject`](https://shukketsu.app/) a member\n<:channel:1277901144537960539> — [`rename`](https://shukketsu.app/) the channel\n<:crown:1277901365250887770> — [`transfer`](https://shukketsu.app/) channel ownership\n<:trash:1277901390999720058> — [`delete`](https://shukketsu.app/) the channel",
+    "voicemasterSetup_button_usage": "Button Usage",
+    "voicemasterSetup_button_usage_description": "Use the buttons below to manage your voice channels.",
+    "voicemasterSetup_success": "<:approve:1276238417427959818> Voice Master setup completed successfully! \n \nCategory: **{{category}}**\nInterface: <#{{interfaceid}}>\nChannel: <#{{channelid}}>",
+
+    "voicemasterNuke_no_data": "<:warning:1276238448189116517> No voicemaster data found for this server.",
+    "voicemasterNuke_success": "<:approve:1276238417427959818> Voice Master channels have been successfully removed and deleted.",
+
+    "voicemasterMenu_no_voice_master_settings": "Voice master settings not found for this server.",
+    "voicemasterMenu_no_voice_master_owned_channel": "You do not own a voice master channel.",
+    "voicemasterMenu_voice_master_owned_channel_not_found": "Your owned voice master channel could not be found.",
+    "voicemasterMenu_voice_channel_locked": "The voice channel has been locked.",
+    "voicemasterMenu_voice_channel_unlocked": "The voice channel has been unlocked.",
+    "voicemasterMenu_voice_channel_hidden": "The voice channel has been hidden.",
+    "voicemasterMenu_voice_channel_revealed": "The voice channel has been revealed.",
+    "voicemasterMenu_set_user_limit": "Set User Limit",
+    "voicemasterMenu_enter_user_limit": "Enter the user limit",
+    "voicemasterMenu_unlimited_placeholder": "Unlimited",
+    "voicemasterMenu_rename_channel": "Rename Channel",
+    "voicemasterMenu_enter_new_channel_name": "Enter the new channel name",
+    "voicemasterMenu_select_user": "Select a user",
+    "voicemasterMenu_select_user_prompt": "Please select a user.",
+    "voicemasterMenu_voice_channel_deleted": "The voice channel has been deleted.",
+    "voicemasterMenu_unknown_action": "Unknown action.",
+    "voicemasterMenu_user_permitted": "{{user}} has been permitted to join the voice channel.",
+    "voicemasterMenu_user_rejected": "{{user}} has been rejected from joining the voice channel.",
+    "voicemasterMenu_channel_ownership_transferred": "Channel ownership has been transferred to {{user}}.",
+    "voicemasterMenu_invalid_user_limit": "Invalid user limit. Please enter a number between 0 and 99.",
+    "voicemasterMenu_user_limit_set": "User limit has been set to {{limit}}.",
+    "voicemasterMenu_rename_limit_reached": "You have reached the rename limit. Please try again later.",
+    "voicemasterMenu_channel_renamed": "The channel has been renamed to {{name}}."
 
 }

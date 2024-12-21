@@ -17,7 +17,7 @@ module.exports = {
 
             if (!user) {
                 const embed = new EmbedBuilder()
-                    .setColor(process.env.ERROR_COLOR)
+                    .setColor(process.env.WARNING_COLOR)
                     .setDescription(t('banner_user_not_found', language));
                 return message.channel.send({ embeds: [embed] });
             }
@@ -26,7 +26,7 @@ module.exports = {
 
             if (!userBanner) {
                 const embed = new EmbedBuilder()
-                    .setColor(process.env.ERROR_COLOR)
+                    .setColor(process.env.WARNING_COLOR)
                     .setDescription(t('banner_not_found', language));
                 return message.channel.send({ embeds: [embed] });
             }

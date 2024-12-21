@@ -18,6 +18,10 @@ const dbMemberDataSchema = new mongoose.Schema({
         type: Number,
         default: 1
     },
+    voicemasterownedchannelid: {
+        type: String,
+        default: ''
+    },
 });
 
 dbMemberDataSchema.pre('save', function(next) {
