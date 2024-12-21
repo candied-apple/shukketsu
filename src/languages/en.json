@@ -6,7 +6,7 @@
     "handler_no_parameters": "No parameters provided.",
     "handler_no_syntax_example": "No syntax and example provided.",
 
-    "prefix_set_success": "The command prefix has been set to `{{prefix}}`",
+    "prefix_set_success": "<:approve:1276238417427959818> The command prefix has been set to `{{prefix}}`",
 
     "ping_description": "Rest ping is `{{ping}}ms`",
 
@@ -35,66 +35,66 @@
 
     "fakePermissionReset_reset": "<:approve:1276238417427959818> All fake permissions have been reset.",
 
-    "avatar_user_not_found": "<:deny:1276289955920085122> User not found. Please mention a valid user or provide a valid user ID.",
+    "avatar_user_not_found": "<:warning:1276238448189116517> User not found. Please mention a valid user or provide a valid user ID.",
     "avatar_title": "{{username}}'s Avatar",
 
-    "banner_user_not_found": "User not found.",
+    "banner_user_not_found": "<:warning:1276238448189116517> User not found.",
     "banner_not_found": "This user does not have a banner.",
     "banner_title": "{{username}}'s Banner",
 
-    "welcomeAdd_invalid_self_destruct": "Invalid self-destruct time. Please provide a value between 6 and 60 seconds.",
-    "welcomeAdd_provide_channel_and_message": "Please provide a channel and a welcome message.",
-    "welcomeAdd_welcome_message_limit_reached": "You have reached the limit of 3 welcome messages for this channel.",
-    "welcomeAdd_welcome_message_added": "Welcome message added to {{channel}}.",
+    "welcomeAdd_invalid_self_destruct": "<:warning:1276238448189116517> Invalid self-destruct time. Please provide a value between 6 and 60 seconds.",
+    "welcomeAdd_provide_channel_and_message": "<:warning:1276238448189116517> Please provide a channel and a welcome message.",
+    "welcomeAdd_welcome_message_limit_reached": "<:warning:1276238448189116517> You have reached the limit of 3 welcome messages for this channel.",
+    "welcomeAdd_welcome_message_added": "<:approve:1276238417427959818> Welcome message added to {{channel}}.",
 
-    "welcomeRemove_provide_channel_and_message_number": "Please provide a channel and the message number to remove.",
-    "welcomeRemove_no_welcome_message": "There are no welcome messages for {{channel}}.",
-    "welcomeRemove_welcome_message_removed": "Welcome message removed from {{channel}}.",
+    "welcomeRemove_provide_channel_and_message_number": "<:warning:1276238448189116517> Please provide a channel and the message number to remove.",
+    "welcomeRemove_no_welcome_message": "<:warning:1276238448189116517> There are no welcome messages for {{channel}}.",
+    "welcomeRemove_welcome_message_removed": "<:approve:1276238417427959818> Welcome message removed from {{channel}}.",
 
-    "welcomeView_provide_channel": "Please provide a channel to view welcome messages.",
-    "welcomeView_no_welcome_message": "There are no welcome messages for {{channel}}.",
+    "welcomeView_provide_channel": "<:warning:1276238448189116517> Please provide a channel to view welcome messages.",
+    "welcomeView_no_welcome_message": "<:warning:1276238448189116517> There are no welcome messages for {{channel}}.",
     "welcomeView_welcome_messages_for_channel": "Welcome messages for {{channel}}",
 
-    "welcomeList_no_welcome_messages": "There are no welcome messages.",
+    "welcomeList_no_welcome_messages": "<:warning:1276238448189116517> There are no welcome messages.",
     "welcomeList_welcome_messages_list": "List of all welcome messages",
 
-    "goodbyeAdd_invalid_self_destruct": "Please provide a valid self-destruct time between 6 and 60 seconds.",
-    "goodbyeAdd_provide_channel_and_message": "Please mention a channel and provide a goodbye message.",
-    "goodbyeAdd_goodbye_message_limit_reached": "You can only have up to 3 goodbye messages per channel.",
-    "goodbyeAdd_goodbye_message_added": "Goodbye message added to {{channel}}.",
+    "goodbyeAdd_invalid_self_destruct": "<:warning:1276238448189116517> Please provide a valid self-destruct time between 6 and 60 seconds.",
+    "goodbyeAdd_provide_channel_and_message": "<:warning:1276238448189116517> Please mention a channel and provide a goodbye message.",
+    "goodbyeAdd_goodbye_message_limit_reached": "<:warning:1276238448189116517> You can only have up to 3 goodbye messages per channel.",
+    "goodbyeAdd_goodbye_message_added": "<:approve:1276238417427959818> Goodbye message added to {{channel}}.",
     
-    "goodbyeRemove_provide_channel_and_message_number": "Please mention a channel and provide a valid message number.",
-    "goodbyeRemove_no_goodbye_message": "There are no goodbye messages in {{channel}}.",
-    "goodbyeRemove_invalid_message_number": "Please provide a valid message number between 1 and {{totalMessages}}.",
-    "goodbyeRemove_goodbye_message_removed": "Goodbye message removed from {{channel}}.",
+    "goodbyeRemove_provide_channel_and_message_number": "<:warning:1276238448189116517> Please mention a channel and provide a valid message number.",
+    "goodbyeRemove_no_goodbye_message": "<:warning:1276238448189116517> There are no goodbye messages in {{channel}}.",
+    "goodbyeRemove_invalid_message_number": "<:warning:1276238448189116517> Please provide a valid message number between 1 and {{totalMessages}}.",
+    "goodbyeRemove_goodbye_message_removed": "<:approve:1276238417427959818> Goodbye message removed from {{channel}}.",
     
-    "goodbyeView_provide_channel": "Please mention a channel to view its goodbye messages.",
-    "goodbyeView_no_goodbye_message": "There are no goodbye messages in {{channel}}.",
+    "goodbyeView_provide_channel": "<:warning:1276238448189116517> Please mention a channel to view its goodbye messages.",
+    "goodbyeView_no_goodbye_message": "<:warning:1276238448189116517> There are no goodbye messages in {{channel}}.",
     "goodbyeView_goodbye_messages_for_channel": "Goodbye messages for {{channel}}",
     
-    "goodbyeList_no_goodbye_messages": "There are no goodbye messages.",
+    "goodbyeList_no_goodbye_messages": "<:warning:1276238448189116517> There are no goodbye messages.",
     "goodbyeList_goodbye_messages_list": "List of all goodbye messages",
 
-    "boostAdd_invalid_self_destruct": "Please provide a valid self-destruct time between 6 and 60 seconds.",
-    "boostAdd_provide_channel_and_message": "Please provide a channel and a message.",
-    "boostAdd_boost_message_limit_reached": "You have reached the limit of 3 boost messages per channel.",
-    "boostAdd_boost_message_added": "Boost message added to {{channel}}.",
+    "boostAdd_invalid_self_destruct": "<:warning:1276238448189116517> Please provide a valid self-destruct time between 6 and 60 seconds.",
+    "boostAdd_provide_channel_and_message": "<:warning:1276238448189116517> Please provide a channel and a message.",
+    "boostAdd_boost_message_limit_reached": "<:warning:1276238448189116517> You have reached the limit of 3 boost messages per channel.",
+    "boostAdd_boost_message_added": "<:approve:1276238417427959818> Boost message added to {{channel}}.",
 
-    "boostRemove_provide_channel_and_message_number": "Please provide a valid channel and message number.",
-    "boostRemove_no_boost_message": "No boost messages found in {{channel}}.",
-    "boostRemove_invalid_message_number": "Please provide a valid message number between 1 and {{totalMessages}}.",
-    "boostRemove_boost_message_removed": "Boost message removed from {{channel}}.",
+    "boostRemove_provide_channel_and_message_number": "<:warning:1276238448189116517> Please provide a valid channel and message number.",
+    "boostRemove_no_boost_message": "<:warning:1276238448189116517> No boost messages found in {{channel}}.",
+    "boostRemove_invalid_message_number": "<:warning:1276238448189116517> Please provide a valid message number between 1 and {{totalMessages}}.",
+    "boostRemove_boost_message_removed": "<:approve:1276238417427959818> Boost message removed from {{channel}}.",
 
-    "boostView_provide_channel": "Please provide a channel.",
-    "boostView_no_boost_message": "No boost messages found in {{channel}}.",
+    "boostView_provide_channel": "<:warning:1276238448189116517> Please provide a channel.",
+    "boostView_no_boost_message": "<:warning:1276238448189116517> No boost messages found in {{channel}}.",
     "boostView_boost_messages_for_channel": "Boost messages for {{channel}}",
 
-    "boostList_no_boost_messages": "No boost messages found.",
+    "boostList_no_boost_messages": "<:warning:1276238448189116517> No boost messages found.",
     "boostList_boost_messages_list": "List of all boost messages",
 
-    "levels_disabled": "Levels System is disabled in this server.",
+    "levels_disabled": "<:warning:1276238448189116517> Levels System is disabled in this server.",
 
-    "levels_no_data": "No data found for {{username}}.",
+    "levels_no_data": "<:warning:1276238448189116517> No data found for {{username}}.",
     "levels_title": "{{username}}'s Level and Experience",
     "levels_level": "Level",
     "levels_xp": "Experience",
@@ -102,44 +102,44 @@
     "levels_rank": "Rank:",
     "levels_footer": "Total Experience: {{totalXP}}",
 
-    "levels_set_rate_xp_multiplier_set": "XP multiplier has been set to {{multiplier}}.",
-    "levels_set_rate_invalid_multiplier": "Invalid multiplier. Please provide a value between 0.1 and 10.",
+    "levels_set_rate_xp_multiplier_set": "<:approve:1276238417427959818> XP multiplier has been set to {{multiplier}}.",
+    "levels_set_rate_invalid_multiplier": "<:warning:1276238448189116517> Invalid multiplier. Please provide a value between 0.1 and 10.",
 
-    "levelsIgnore_no_target": "Please specify a channel or role to ignore.",
-    "levelsIgnore_no_server_data": "Server data not found.",
-    "levelsIgnore_invalid_target": "Invalid target. Please specify a valid channel or role.",
-    "levelsIgnore_success": "Successfully ignored {{target}} for XP.",
+    "levelsIgnore_no_target": "<:warning:1276238448189116517> Please specify a channel or role to ignore.",
+    "levelsIgnore_no_server_data": "<:warning:1276238448189116517> Server data not found.",
+    "levelsIgnore_invalid_target": "<:warning:1276238448189116517> Invalid target. Please specify a valid channel or role.",
+    "levelsIgnore_success": "<:approve:1276238417427959818> Successfully ignored {{target}} for XP.",
 
-    "levelsList_no_server_data": "Server data not found.",
-    "levelsList_no_ignored": "No ignored channels or roles found.",
+    "levelsList_no_server_data": "<:warning:1276238448189116517> Server data not found.",
+    "levelsList_no_ignored": "<:warning:1276238448189116517> No ignored channels or roles found.",
     "levelsList_channels_roles_title": "Ignored Channels and Roles",
     "levelsList_ignored_channels": "Ignored Channels",
     "levelsList_ignored_roles": "Ignored Roles",
 
 
-    "levelsUnignore_no_target": "Please specify a channel or role to unignore.",
-    "levelsUnignore_no_server_data": "Server data not found.",
-    "levelsUnignore_invalid_target": "Invalid target. Please specify a valid channel or role.",
-    "levelsUnignore_not_ignored": "The specified channel or role is not ignored.",
-    "levelsUnignore_success": "Successfully unignored {{target}} for XP.",
-    "levelsCleanup_success": "Successfully reset level and XP for absent members.",
+    "levelsUnignore_no_target": "<:warning:1276238448189116517> Please specify a channel or role to unignore.",
+    "levelsUnignore_no_server_data": "<:warning:1276238448189116517> Server data not found.",
+    "levelsUnignore_invalid_target": "<:warning:1276238448189116517> Invalid target. Please specify a valid channel or role.",
+    "levelsUnignore_not_ignored": "<:warning:1276238448189116517> The specified channel or role is not ignored.",
+    "levelsUnignore_success": "<:approve:1276238417427959818> Successfully unignored {{target}} for XP.",
+    "levelsCleanup_success": "<:approve:1276238417427959818> Successfully reset level and XP for absent members.",
 
-    "levelsLock_description": "Levels System is locked in this server.",
-    "levelsUnlock_description": "Levels System is unlocked in this server.",
+    "levelsLock_description": "<:approve:1276238417427959818> Levels System is locked in this server.",
+    "levelsUnlock_description": "<:approve:1276238417427959818> Levels System is unlocked in this server.",
 
-    "levelsReset_success": "All members' levels and XP have been reset successfully.",
+    "levelsReset_success": "<:approve:1276238417427959818> All members' levels and XP have been reset successfully.",
 
-    "levelsLeaderboard_no_data": "No data available for the leaderboard.",
+    "levelsLeaderboard_no_data": "<:warning:1276238448189116517> No data available for the leaderboard.",
     "levelsLeaderboard_title": "Top Ranking Members",
 
-    "levelsMessages_toggle": "Level up messages have been set to {{setting}}.",
+    "levelsMessages_toggle": "<:approve:1276238417427959818> Level up messages have been set to {{setting}}.",
 
-    "levelsMessage_updated": "The level up message has been updated successfully!",
+    "levelsMessage_updated": "<:approve:1276238417427959818> The level up message has been updated successfully!",
 
     "levelsMessageView_title": "Level Up Message",
     "levelsMessageView_noData": "No level up message cannot be found.",
 
-    "levelsConfig_no_config": "No configuration found for the leveling system.",
+    "levelsConfig_no_config": "<:warning:1276238448189116517> No configuration found for the leveling system.",
     "levelsConfig_title": "Leveling System Configuration",
     "levelsConfig_select_option": "Please select a configuration option to view.",
     "levelsConfig_xpMultiplier_title": "XP Multiplier",
@@ -156,24 +156,24 @@
     "levelsConfig_levelsMessageMode_title": "Levels Message Mode",
     "levelsConfig_levelsMessageMode_description": "Level up messages are currently set to: `{{levelsMessageMode}}`",
 
-    "levelsRoles_no_roles": "There are no level roles set up.",
+    "levelsRoles_no_roles": "<:warning:1276238448189116517> There are no level roles set up.",
     "levelsRoles_title": "Level Roles",
 
-    "levelsAdd_success": "Level role added successfully.",
-    "levelsUpdate_success": "Level role updated successfully.",
-    "levelsRemove_success": "Level role removed successfully.",
-    "levelsRemove_not_found": "Level role not found.",
+    "levelsAdd_success": "<:approve:1276238417427959818> Level role added successfully.",
+    "levelsUpdate_success": "<:approve:1276238417427959818> Level role updated successfully.",
+    "levelsRemove_success": "<:approve:1276238417427959818> Level role removed successfully.",
+    "levelsRemove_not_found": "<:warning:1276238448189116517> Level role not found.",
 
-    "levelsStackRoles_invalid_args": "Invalid arguments. Please provide a valid role and level.",
-    "levelsStackRoles_success": "Stacking roles has been set to `{{option}}`.",
+    "levelsStackRoles_invalid_args": "<:warning:1276238448189116517> Invalid arguments. Please provide a valid role and level.",
+    "levelsStackRoles_success": "<:approve:1276238417427959818> Stacking roles has been set to `{{option}}`.",
 
-    "levelsMessagemode_success": "Level up messages will now be sent to: **{{mode}}**",
-    "levelsMessagemode_invalid": "Invalid mode. Valid modes are: `{{modes}}`",
+    "levelsMessagemode_success": "<:approve:1276238417427959818> Level up messages will now be sent to: **{{mode}}**",
+    "levelsMessagemode_invalid": "<:warning:1276238448189116517> Invalid mode. Valid modes are: `{{modes}}`",
 
-    "levelsSync_success": "Member level roles have been successfully updated.",
+    "levelsSync_success": "<:approve:1276238417427959818> Member level roles have been successfully updated.",
 
-    "setxp_success": "Successfully set {{user}}'s experience to {{xp}}. New level: {{level}}.",
-    "setxp_user_not_found": "User not found in the database."
+    "setxp_success": "<:approve:1276238417427959818> Successfully set {{user}}'s experience to {{xp}}. New level: {{level}}.",
+    "setxp_user_not_found": "<:warning:1276238448189116517> User not found in the database."
 
 
 }
