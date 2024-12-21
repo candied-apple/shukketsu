@@ -60,6 +60,9 @@ function replaceVariables(str, data) {
         '{user.join_position}': data.member?.joinPosition,
         '{user.join_position_suffix}': data.member?.joinPosition,
 
+        '{user.xp}': data.xp,
+        '{user.level}': data.level,
+
         '{channel.name}': data.channel?.name,
         '{channel.id}': data.channel?.id,
         '{channel.mention}': `<#${data.channel?.id}>`,
@@ -83,6 +86,7 @@ function replaceVariables(str, data) {
         '{date.utc_now_shorter}': format(new Date(), 'Pp', { timeZone: 'UTC' }),
         '{time.utc_now}': format(new Date(), 'hh:mm a', { timeZone: 'UTC' }),
         '{time.utc_now_military}': format(new Date(), 'HH:mm', { timeZone: 'UTC' }),
+
     };
 
     return str.replace(/{[^}]+}/g, match => variables[match] || match);

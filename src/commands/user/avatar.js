@@ -3,17 +3,18 @@ const { getLanguage, t } = require('../../handlers/languageHandler');
 
 module.exports = {
     name: 'avatar',
-    description: 'Displays the avatar of a specified user.',
+    description: 'Displays the avatar of a specified user or the message author if no user is specified.',
     category: 'user',
     syntax: 'avatar <user>',
     example: 'avatar @username',
     parameters: ['user'],
+    paramOptional: true,
     flags: [],
     permissions: [],
     async execute(message, args) {
         try {
             const language = await getLanguage(message.guild.id);
-            const user = message.mentions.users.first() || await message.client.users.fetch(args[0]);
+            const user = message.mentions.users.first() || await message.client.users.fetch(args[0]).catch(() => null) || message.author;
 
             if (!user) {
                 const embed = new EmbedBuilder()

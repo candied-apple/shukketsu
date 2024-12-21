@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
 
 const dbRoleDataSchema = new mongoose.Schema({
-    roleId: {
+    serverId: {
         type: String,
         required: true,
         unique: true
+    },
+    roleId: {
+        type: String,
+        required: true,
     },
     fakePermissions: {
         type: [String],

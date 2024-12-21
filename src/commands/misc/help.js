@@ -17,8 +17,6 @@ module.exports = {
 
         const generateEmbed = (category, page) => {
             const commandsInCategory = commands.filter(cmd => cmd.category === category);
-            console.log(`Commands in category ${category}:`, commandsInCategory); // Log commands in the selected category
-
             const commandsArray = Array.from(commandsInCategory.values());
             const itemsPerPage = 5;
             const start = page * itemsPerPage;

@@ -14,6 +14,7 @@ Each command should be defined as a module and exported using `module.exports`. 
 - **syntax**: The syntax for using the command.
 - **example**: An example of how to use the command.
 - **parameters**: An array of parameters required by the command.
+- **paramOptional**: A boolean indicating if the parameters are optional.
 - **flags**: An array of flags that can be used with the command.
 - **permissions**: An array of permissions required to use the command.
 - **execute**: An asynchronous function that contains the command's logic.
@@ -31,6 +32,7 @@ module.exports = {
     syntax: 'example <param>',
     example: 'example test',
     parameters: ['param'],
+    paramOptional: true,
     flags: [],
     permissions: ['Administrator'],
     async execute(message, args) {
@@ -59,7 +61,7 @@ Use the following colors for embeds:
 
 - **DEFAULT_COLOR**: General information and success messages.
 - **SUCCESS_COLOR**: Success messages.
-- **WARNING_COLOR**: Warning messages.
+- **WARNING_COLOR**: Warning messages. (Only will be used in catch blocks)
 - **ERROR_COLOR**: Error messages.
 
 These colors are defined in the `.env` file:

@@ -1,3 +1,4 @@
+
 ### Embed Scripting System Documentation
 
 #### Overview
@@ -16,7 +17,7 @@ The embed scripting system allows you to create dynamic embeds and messages usin
 - `description` - The embed description. (e.g., `Welcome {user}`)
 - `image` - The embed image URL. (e.g., `https://example.com/image.png`)
 - `thumbnail` - The embed thumbnail URL. (e.g., `https://example.com/thumbnail.png`)
-- `timestamp` - The embed timestamp. (No arguments)
+- `timestamp` - The embed timestamp. (e.g., `current` for the current time or `MM-DD-YYYY-HH-MM` for a custom time)
 - `author` - The author information. (e.g., `{author: Name && IconURL && URL}`)
 - `field` - A field in the embed. (e.g., `{field: FieldName && value: FieldValue && inline}`)
 - `footer` - The footer information. (e.g., `{footer: FooterText && FooterIcon}`)
@@ -61,6 +62,58 @@ const data = {
 
 const { embed, messageContent } = parseEmbedScript(script, data);
 channel.send({ content: messageContent, embeds: [embed] });
+```
+
+#### Additional Examples
+
+**Example with URL:**
+```plaintext
+{embed}$v{url: https://example.com}$v{title: Check this out!}
+```
+
+**Example with Color:**
+```plaintext
+{embed}$v{color: #FF5733}$v{title: Important Update}
+```
+
+**Example with Image:**
+```plaintext
+{embed}$v{image: https://example.com/image.png}$v{title: Look at this image}
+```
+
+**Example with Thumbnail:**
+```plaintext
+{embed}$v{thumbnail: https://example.com/thumbnail.png}$v{title: Thumbnail Example}
+```
+
+**Example with Timestamp:**
+```plaintext
+{embed}$v{timestamp: current}$v{title: Current Time}
+```
+
+**Example with Custom Timestamp:**
+```plaintext
+{embed}$v{timestamp: 12-25-2023-15-30}$v{title: Custom Time Example}
+```
+
+**Example with Author:**
+```plaintext
+{embed}$v{author: AuthorName && https://example.com/icon.png && https://example.com}$v{title: Author Info}
+```
+
+**Example with Field:**
+```plaintext
+{embed}$v{field: FieldName && value: FieldValue && inline}$v{title: Field Example}
+```
+
+**Example with Footer:**
+```plaintext
+{embed}$v{footer: FooterText && https://example.com/footericon.png}$v{title: Footer Example}
+```
+
+**Example with Message:**
+```plaintext
+{embed}$v{message: Welcome to {guild.name}, {user.mention}}$v{title: Welcome Message}
 ```
 
 This documentation provides an overview of the embed scripting system, including the structure, parameters, dynamic variables, and example usage.

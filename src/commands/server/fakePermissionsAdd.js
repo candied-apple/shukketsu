@@ -24,7 +24,7 @@ module.exports = {
                 return message.channel.send({ embeds: [embed] });
             }
 
-            const roleData = await dbRoleData.findOne({ roleId: role.id });
+            const roleData = await dbRoleData.findOne({ serverId: message.guild.id, roleId: role.id });
             if (roleData && roleData.fakePermissions.includes(permission)) {
                 const embed = new EmbedBuilder()
                     .setColor(process.env.WARNING_COLOR)
@@ -33,7 +33,7 @@ module.exports = {
             }
 
             await dbRoleData.findOneAndUpdate(
-                { roleId: role.id },
+                { serverId: message.guild.id, roleId: role.id },
                 { $addToSet: { fakePermissions: permission } },
                 { new: true, upsert: true }
             );

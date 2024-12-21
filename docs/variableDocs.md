@@ -76,6 +76,14 @@ To use the variable system, include placeholders in your message string. When th
 | `{user.join_position}`       | The user’s join position                    |
 | `{user.join_position_suffix}`| The user’s join position with suffix        |
 
+#### Levels Variables
+This section is only available to levels message command
+
+| Variable                     | Output                                      |
+|------------------------------|---------------------------------------------|
+| `{user.level}`               | The user’s current level                    |
+| `{user.xp}`                  | The user’s current xp                       |
+
 #### Channel Variables
 
 | Variable                     | Output                                      |

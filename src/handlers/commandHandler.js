@@ -25,12 +25,16 @@ function loadCommands(client) {
     console.log(`Loaded ${client.commands.size} command`);
 
     client.on('messageCreate', async message => {
-        if (!message.content.startsWith(process.env.PREFIX) || message.author.bot) return;
-
-        const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/);
-        let commandName = args.shift().toLowerCase();
-
+        if (message.author.bot) return;
+    
         const serverData = await dbServerData.findOne({ serverId: message.guild.id });
+        const prefix = serverData ? serverData.prefix : process.env.PREFIX;
+    
+        if (!message.content.startsWith(prefix)) return;
+    
+        const args = message.content.slice(prefix.length).trim().split(/ +/);
+        let commandName = args.shift().toLowerCase();
+    
         if (serverData) {
             // Check for multi-word aliases
             let aliasFound = false;
@@ -55,18 +59,18 @@ function loadCommands(client) {
                 }
             }
         }
-
+    
         // Check for multi-word commands
         const fullCommandName = [commandName];
         while (args.length && client.commands.has(fullCommandName.concat(args[0]).join(' '))) {
             fullCommandName.push(args.shift().toLowerCase());
         }
-
+    
         const command = client.commands.get(fullCommandName.join(' '));
         if (!command) return;
-
+    
         const language = await getLanguage(message.guild.id);
-
+    
         // Check if the command is in the owner category
         if (command.category === 'owner' && !owners.includes(message.author.id)) {
             const embed = new EmbedBuilder()
@@ -74,7 +78,7 @@ function loadCommands(client) {
                 .setDescription(t('handler_no_permission', language, { permission: 'Bot Owner' }));
             return message.channel.send({ embeds: [embed] });
         }
-
+    
         // Check for fake permissions
         if (command.permissions && command.permissions.length > 0) {
             for (const permission of command.permissions) {
@@ -89,9 +93,9 @@ function loadCommands(client) {
                 }
             }
         }
-
+    
         // Check for required parameters
-        if (command.parameters && command.parameters.length > 0 && args.length < command.parameters.length) {
+        if (command.parameters && command.parameters.length > 0 && args.length < command.parameters.length && !command.paramOptional) {
             const embed = new EmbedBuilder()
                 .setAuthor({ name: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
                 .setTitle(command.name)
@@ -103,6 +107,7 @@ function loadCommands(client) {
                 )
             return message.channel.send({ embeds: [embed] });
         }
+    
         try {
             command.execute(message, args);
         } catch (error) {

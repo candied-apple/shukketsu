@@ -1,10 +1,12 @@
 {
-    "global_error_description": "<:deny:1276289955920085122> There was an error while executing the command. Please contact discord.gg/shukketsu",
+    "global_error_description": "<:deny:1276289955920085122> There was an error while executing the command. Please contact [shukketsu support](https://discord.gg/shukketsu) if the issue persists.",
     "global_page_footer": "Page {{currentPage}} of {{totalPages}} | Showing {{start}}-{{end}} of {{totalEntries}} entries",
 
     "handler_no_permission": "<:warning:1276238448189116517> You do not have permission to use this command.\nRequired permission: `{{permission}}`",
     "handler_no_parameters": "No parameters provided.",
     "handler_no_syntax_example": "No syntax and example provided.",
+
+    "prefix_set_success": "The command prefix has been set to `{{prefix}}`",
 
     "ping_description": "Rest ping is `{{ping}}ms`",
 
@@ -88,7 +90,90 @@
     "boostView_boost_messages_for_channel": "Boost messages for {{channel}}",
 
     "boostList_no_boost_messages": "No boost messages found.",
-    "boostList_boost_messages_list": "List of all boost messages"
+    "boostList_boost_messages_list": "List of all boost messages",
 
-    
+    "levels_disabled": "Levels System is disabled in this server.",
+
+    "levels_no_data": "No data found for {{username}}.",
+    "levels_title": "{{username}}'s Level and Experience",
+    "levels_level": "Level",
+    "levels_xp": "Experience",
+    "levels_progress": "Progress ({{percentage}}%)",
+    "levels_rank": "Rank:",
+    "levels_footer": "Total Experience: {{totalXP}}",
+
+    "levels_set_rate_xp_multiplier_set": "XP multiplier has been set to {{multiplier}}.",
+    "levels_set_rate_invalid_multiplier": "Invalid multiplier. Please provide a value between 0.1 and 10.",
+
+    "levelsIgnore_no_target": "Please specify a channel or role to ignore.",
+    "levelsIgnore_no_server_data": "Server data not found.",
+    "levelsIgnore_invalid_target": "Invalid target. Please specify a valid channel or role.",
+    "levelsIgnore_success": "Successfully ignored {{target}} for XP.",
+
+    "levelsList_no_server_data": "Server data not found.",
+    "levelsList_no_ignored": "No ignored channels or roles found.",
+    "levelsList_channels_roles_title": "Ignored Channels and Roles",
+    "levelsList_ignored_channels": "Ignored Channels",
+    "levelsList_ignored_roles": "Ignored Roles",
+
+
+    "levelsUnignore_no_target": "Please specify a channel or role to unignore.",
+    "levelsUnignore_no_server_data": "Server data not found.",
+    "levelsUnignore_invalid_target": "Invalid target. Please specify a valid channel or role.",
+    "levelsUnignore_not_ignored": "The specified channel or role is not ignored.",
+    "levelsUnignore_success": "Successfully unignored {{target}} for XP.",
+    "levelsCleanup_success": "Successfully reset level and XP for absent members.",
+
+    "levelsLock_description": "Levels System is locked in this server.",
+    "levelsUnlock_description": "Levels System is unlocked in this server.",
+
+    "levelsReset_success": "All members' levels and XP have been reset successfully.",
+
+    "levelsLeaderboard_no_data": "No data available for the leaderboard.",
+    "levelsLeaderboard_title": "Top Ranking Members",
+
+    "levelsMessages_toggle": "Level up messages have been set to {{setting}}.",
+
+    "levelsMessage_updated": "The level up message has been updated successfully!",
+
+    "levelsMessageView_title": "Level Up Message",
+    "levelsMessageView_noData": "No level up message cannot be found.",
+
+    "levelsConfig_no_config": "No configuration found for the leveling system.",
+    "levelsConfig_title": "Leveling System Configuration",
+    "levelsConfig_select_option": "Please select a configuration option to view.",
+    "levelsConfig_xpMultiplier_title": "XP Multiplier",
+    "levelsConfig_xpMultiplier_description": "The current XP multiplier is set to `{{xpMultiplier}}`.",
+    "levelsConfig_ignoredChannels_title": "Ignored Channels",
+    "levelsConfig_ignoredRoles_title": "Ignored Roles",
+    "levelsConfig_levelsEnabled_title": "Levels Enabled",
+    "levelsConfig_levelsEnabled_description": "The leveling system is currently `{{levelsEnabled}}`.",
+    "levelsConfig_levelsMessage_title": "Levels Message",
+    "levelsConfig_levelsMessage_description": "The current levels message is:\n```{{levelsMessage}}```",
+    "levelsConfig_no_items": "No items to display.",
+    "levelsConfig_levelStackroles_title": "Level Stack Roles",
+    "levelsConfig_levelStackroles_description": "Level stack roles are currently set to: `{{levelStackroles}}`",
+    "levelsConfig_levelsMessageMode_title": "Levels Message Mode",
+    "levelsConfig_levelsMessageMode_description": "Level up messages are currently set to: `{{levelsMessageMode}}`",
+
+    "levelsRoles_no_roles": "There are no level roles set up.",
+    "levelsRoles_title": "Level Roles",
+
+    "levelsAdd_success": "Level role added successfully.",
+    "levelsUpdate_success": "Level role updated successfully.",
+    "levelsRemove_success": "Level role removed successfully.",
+    "levelsRemove_not_found": "Level role not found.",
+
+    "levelsStackRoles_invalid_args": "Invalid arguments. Please provide a valid role and level.",
+    "levelsStackRoles_success": "Stacking roles has been set to `{{option}}`.",
+
+    "levelsMessagemode_success": "Level up messages will now be sent to: **{{mode}}**",
+    "levelsMessagemode_invalid": "Invalid mode. Valid modes are: `{{modes}}`",
+
+    "levelsSync_success": "Member level roles have been successfully updated.",
+
+    "setxp_success": "Successfully set {{user}}'s experience to {{xp}}. New level: {{level}}.",
+    "setxp_user_not_found": "User not found in the database."
+
+
 }

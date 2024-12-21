@@ -34,6 +34,43 @@ const dbServerDataSchema = new mongoose.Schema({
         message: String,
         selfDestruct: Number,
     }],
+    xpMultiplier: {
+        type: Number,
+        default: 1
+    },
+    levelsIgnoredChannels: {
+        type: [String],
+        default: []
+    },
+    levelsIgnoredRoles: {
+        type: [String],
+        default: []
+    },
+    levelsEnabled: {
+        type: Boolean,
+        default: true
+    },
+    levelsMessage: {
+        type: String,
+        default: 'Congratulations {member}, you have leveled up to level {level}!'
+    },
+    levelsMessageMode: {
+        type: String,
+        default: 'context'
+    },
+    levelsMessageChannel: {
+        type: String,
+        default: null
+    },
+    levelRoles: {
+        type: Map,
+        of: Number,
+        default: {}
+    },
+    levelStackroles: {
+        type: Boolean,
+        default: true
+    }
 });
 
 dbServerDataSchema.pre('save', function(next) {
