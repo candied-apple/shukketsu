@@ -100,7 +100,10 @@ module.exports = {
         const channel = message.mentions.channels.first();
 
         if (!channel) {
-            return message.channel.send(t('boostView_provide_channel', language));
+            const embed = new EmbedBuilder()
+                .setColor(process.env.ERROR_COLOR)
+                .setDescription(t('boostView_provide_channel', language));
+            return message.channel.send({ embeds: [embed] });
         }
 
         try {
@@ -108,7 +111,10 @@ module.exports = {
             const boostMessages = serverData.boostMessages.filter(msg => msg.channelId === channel.id);
 
             if (!boostMessages.length) {
-                return message.channel.send(t('boostView_no_boost_message', language, { channel: channel.name }));
+                const embed = new EmbedBuilder()
+                    .setColor(process.env.ERROR_COLOR)
+                    .setDescription(t('boostView_no_boost_message', language, { channel: channel.name }));
+                return message.channel.send({ embeds: [embed] });
             }
 
             paginate(message, boostMessages, 5, language, channel.name);

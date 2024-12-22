@@ -103,7 +103,10 @@ module.exports = {
             const boostMessages = serverData.boostMessages;
 
             if (!boostMessages.length) {
-                return message.channel.send(t('boostList_no_boost_messages', language));
+                const embed = new EmbedBuilder()
+                    .setColor(process.env.DEFAULT_COLOR)
+                    .setDescription(t('boostList_no_boost_messages', language));
+                return message.channel.send({ embeds: [embed] });
             }
 
             paginate(message, boostMessages, 5, language);

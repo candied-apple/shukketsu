@@ -18,7 +18,10 @@ module.exports = {
             const option = args[0]?.toLowerCase();
 
             if (!['on', 'off'].includes(option)) {
-                return message.channel.send(t('levelsStackRoles_invalid_args', language));
+                const embed = new EmbedBuilder()
+                    .setDescription(t('levelsStackRoles_invalid_args', language))
+                    .setColor(process.env.ERROR_COLOR);
+                return message.channel.send({ embeds: [embed] });
             }
 
             const serverData = await dbServerData.findOne({ serverId: message.guild.id });

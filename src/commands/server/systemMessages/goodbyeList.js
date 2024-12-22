@@ -103,7 +103,10 @@ module.exports = {
             const goodbyeMessages = serverData.goodbyeMessages;
 
             if (!goodbyeMessages.length) {
-                return message.channel.send(t('goodbyeList_no_goodbye_messages', language));
+                const embed = new EmbedBuilder()
+                    .setColor(process.env.DEFAULT_COLOR)
+                    .setDescription(t('goodbyeList_no_goodbye_messages', language));
+                return message.channel.send({ embeds: [embed] });
             }
 
             paginate(message, goodbyeMessages, 5, language);

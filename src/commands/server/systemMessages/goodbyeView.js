@@ -100,7 +100,10 @@ module.exports = {
         const channel = message.mentions.channels.first();
 
         if (!channel) {
-            return message.channel.send(t('goodbyeView_provide_channel', language));
+            const embed = new EmbedBuilder()
+                .setColor(process.env.ERROR_COLOR)
+                .setDescription(t('goodbyeView_provide_channel', language));
+            return message.channel.send({ embeds: [embed] });
         }
 
         try {
@@ -108,7 +111,10 @@ module.exports = {
             const goodbyeMessages = serverData.goodbyeMessages.filter(msg => msg.channelId === channel.id);
 
             if (!goodbyeMessages.length) {
-                return message.channel.send(t('goodbyeView_no_goodbye_message', language, { channel: channel.name }));
+                const embed = new EmbedBuilder()
+                    .setColor(process.env.ERROR_COLOR)
+                    .setDescription(t('goodbyeView_no_goodbye_message', language, { channel: channel.name }));
+                return message.channel.send({ embeds: [embed] });
             }
 
             paginate(message, goodbyeMessages, 5, language, channel.name);

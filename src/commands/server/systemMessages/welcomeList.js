@@ -103,16 +103,19 @@ module.exports = {
             const welcomeMessages = serverData.welcomeMessages;
 
             if (!welcomeMessages.length) {
-                return message.channel.send(t('welcomeList_no_welcome_messages', language));
+                const noMessagesEmbed = new EmbedBuilder()
+                    .setColor(process.env.DEFAULT_COLOR)
+                    .setDescription(t('welcomeList_no_welcome_messages', language));
+                return message.channel.send({ embeds: [noMessagesEmbed] });
             }
 
             paginate(message, welcomeMessages, 5, language);
         } catch (error) {
             console.error(error);
-            const embed = new EmbedBuilder()
+            const errorEmbed = new EmbedBuilder()
                 .setColor(process.env.ERROR_COLOR)
                 .setDescription(t('global_error_description', language));
-            message.channel.send({ embeds: [embed] });
+            message.channel.send({ embeds: [errorEmbed] });
         }
     },
 };

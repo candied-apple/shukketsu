@@ -18,7 +18,10 @@ module.exports = {
 
         const availableLanguages = ['en', 'tr'];
         if (!availableLanguages.includes(newLanguage)) {
-            return message.channel.send(t('languageSet_invalid_language', language, { languages: availableLanguages.join(', ') }));
+            const embed = new EmbedBuilder()
+                .setDescription(t('languageSet_invalid_language', language, { languages: availableLanguages.join(', ') }))
+                .setColor(process.env.ERROR_COLOR);
+            return message.channel.send({ embeds: [embed] });
         }
 
         try {

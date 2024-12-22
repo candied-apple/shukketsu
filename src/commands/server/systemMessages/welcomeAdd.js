@@ -20,7 +20,10 @@ module.exports = {
         if (selfDestructIndex !== -1) {
             selfDestruct = parseInt(args[selfDestructIndex + 1], 10);
             if (isNaN(selfDestruct) || selfDestruct < 6 || selfDestruct > 60) {
-                return message.channel.send(t('welcomeAdd_invalid_self_destruct', language));
+                const embed = new EmbedBuilder()
+                    .setColor(process.env.ERROR_COLOR)
+                    .setDescription(t('welcomeAdd_invalid_self_destruct', language));
+                return message.channel.send({ embeds: [embed] });
             }
             args.splice(selfDestructIndex, 2);
         }
@@ -28,7 +31,10 @@ module.exports = {
         const welcomeMessage = args.slice(1).join(' ');
 
         if (!channel || !welcomeMessage) {
-            return message.channel.send(t('welcomeAdd_provide_channel_and_message', language));
+            const embed = new EmbedBuilder()
+                .setColor(process.env.ERROR_COLOR)
+                .setDescription(t('welcomeAdd_provide_channel_and_message', language));
+            return message.channel.send({ embeds: [embed] });
         }
 
         try {
@@ -40,7 +46,10 @@ module.exports = {
         
             // Check if the limit of 3 messages per channel is reached
             if (channelMessages.length >= 3) {
-                return message.channel.send(t('welcomeAdd_welcome_message_limit_reached', language));
+                const embed = new EmbedBuilder()
+                    .setColor(process.env.ERROR_COLOR)
+                    .setDescription(t('welcomeAdd_welcome_message_limit_reached', language));
+                return message.channel.send({ embeds: [embed] });
             }
         
             welcomeMessages.push({

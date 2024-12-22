@@ -21,7 +21,10 @@ module.exports = {
             const roleId = [...serverData.levelRoles.entries()].find(([key, value]) => value === rank)?.[0];
 
             if (!roleId) {
-                return message.channel.send(t('levelsRemove_not_found', language));
+                const embed = new EmbedBuilder()
+                    .setDescription(t('levelsRemove_not_found', language))
+                    .setColor(process.env.ERROR_COLOR);
+                return message.channel.send({ embeds: [embed] });
             }
 
             serverData.levelRoles.delete(roleId);

@@ -18,7 +18,10 @@ module.exports = {
             const serverData = await dbServerData.findOne({ serverId: message.guild.id });
 
             if (!serverData || !serverData.levelRoles.size) {
-                return message.channel.send(t('levelsRoles_no_roles', language));
+                const noRolesEmbed = new EmbedBuilder()
+                    .setColor(process.env.ERROR_COLOR)
+                    .setDescription(t('levelsRoles_no_roles', language));
+                return message.channel.send({ embeds: [noRolesEmbed] });
             }
 
             const rolesArray = Array.from(serverData.levelRoles.entries())
@@ -114,10 +117,10 @@ module.exports = {
         } catch (error) {
             console.error(error);
             const language = await getLanguage(message.guild.id);
-            const embed = new EmbedBuilder()
+            const errorEmbed = new EmbedBuilder()
                 .setColor(process.env.ERROR_COLOR)
                 .setDescription(t('global_error_description', language));
-            message.channel.send({ embeds: [embed] });
+            message.channel.send({ embeds: [errorEmbed] });
         }
     },
 };

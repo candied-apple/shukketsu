@@ -52,6 +52,7 @@
     "welcomeRemove_provide_channel_and_message_number": "<:warning:1276238448189116517> Please provide a channel and the message number to remove.",
     "welcomeRemove_no_welcome_message": "<:warning:1276238448189116517> There are no welcome messages for {{channel}}.",
     "welcomeRemove_welcome_message_removed": "<:approve:1276238417427959818> Welcome message removed from {{channel}}.",
+    "welcomeRemove_invalid_message_number": "<:warning:1276238448189116517> Please provide a valid message number between 1 and {{totalMessages}}.",
 
     "welcomeView_provide_channel": "<:warning:1276238448189116517> Please provide a channel to view welcome messages.",
     "welcomeView_no_welcome_message": "<:warning:1276238448189116517> There are no welcome messages for {{channel}}.",
@@ -215,17 +216,28 @@
     "voicemasterMenu_rename_limit_reached": "You have reached the rename limit. Please try again later.",
     "voicemasterMenu_channel_renamed": "The channel has been renamed to {{name}}.",
 
-    "autorole_list_no_data": "No server data found.",
-    "autorole_add_success": "The role {{role}} has been added as an autorole.",
-    "autorole_remove_success": "The role {{role}} has been removed from autoroles.",
-    "autorole_reset_success": "All autoroles have been cleared.",
+    "autorole_list_no_data": "<:warning:1276238448189116517> No server data found.",
+    "autorole_add_success": "<:approve:1276238417427959818> The role {{role}} has been added as an autorole.",
+    "autorole_remove_success": "<:approve:1276238417427959818> The role {{role}} has been removed from autoroles.",
+    "autorole_reset_success": "<:approve:1276238417427959818> All autoroles have been cleared.",
     "autorole_list_title": "Autoroles",
-    "autorole_list_empty": "There are no autoroles set.",
+    "autorole_list_empty": "<:warning:1276238448189116517> There are no autoroles set.",
 
-    "reactionroleadd_missing_args": "Please provide a message link, reaction, and role.",
-    "reactionroleadd_role_not_found": "Role not found.",
-    "reactionroleadd_channel_not_found": "Channel not found.",
-    "reactionroleadd_message_not_found": "Message not found.",
-    "reactionroleadd_success": "Successfully added reaction {{reaction}} to role {{role}}."
+    "reactionroleadd_missing_args": "<:warning:1276238448189116517> Please provide a message link, reaction, and role.",
+    "reactionroleadd_role_not_found": "<:warning:1276238448189116517> Role not found.",
+    "reactionroleadd_channel_not_found": "<:warning:1276238448189116517> Channel not found.",
+    "reactionroleadd_message_not_found": "<:warning:1276238448189116517> Message not found.",
+    "reactionroleadd_success": "<:approve:1276238417427959818> Successfully added reaction {{reaction}} to role {{role}}.",
 
+    "sendembed_provide_channel_and_script": "Please provide a valid channel and embed script.",
+    "sendembed_invalid_script": "The provided embed script is invalid.",
+
+    "provide_both_userId_serverId": "Please provide both a user ID and a server ID.",
+    "server_added_to_whitelist": "Server with ID {serverId} has been added to the whitelist for user {userId}.",
+    "server_already_whitelisted": "This server is already whitelisted.",
+
+    "provide_serverId": "Please provide a server ID.",
+    "server_removed_from_whitelist": "Server with ID {serverId} has been removed from the whitelist.",
+    "server_not_found_in_whitelist": "Server not found in the whitelist."
+    
 }

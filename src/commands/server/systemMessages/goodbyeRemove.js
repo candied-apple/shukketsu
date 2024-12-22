@@ -17,7 +17,10 @@ module.exports = {
         const messageNumber = parseInt(args[1], 10);
 
         if (!channel || isNaN(messageNumber)) {
-            return message.channel.send(t('goodbyeRemove_provide_channel_and_message_number', language));
+            const embed = new EmbedBuilder()
+                .setColor(process.env.ERROR_COLOR)
+                .setDescription(t('goodbyeRemove_provide_channel_and_message_number', language));
+            return message.channel.send({ embeds: [embed] });
         }
 
         try {
@@ -25,11 +28,17 @@ module.exports = {
             const goodbyeMessages = serverData.goodbyeMessages.filter(msg => msg.channelId === channel.id);
 
             if (goodbyeMessages.length === 0) {
-                return message.channel.send(t('goodbyeRemove_no_goodbye_message', language, { channel: channel.name }));
+                const embed = new EmbedBuilder()
+                    .setColor(process.env.ERROR_COLOR)
+                    .setDescription(t('goodbyeRemove_no_goodbye_message', language, { channel: channel.name }));
+                return message.channel.send({ embeds: [embed] });
             }
 
             if (messageNumber < 1 || messageNumber > goodbyeMessages.length) {
-                return message.channel.send(t('goodbyeRemove_invalid_message_number', language, { totalMessages: goodbyeMessages.length }));
+                const embed = new EmbedBuilder()
+                    .setColor(process.env.ERROR_COLOR)
+                    .setDescription(t('goodbyeRemove_invalid_message_number', language, { totalMessages: goodbyeMessages.length }));
+                return message.channel.send({ embeds: [embed] });
             }
 
             goodbyeMessages.splice(messageNumber - 1, 1);

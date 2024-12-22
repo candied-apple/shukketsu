@@ -17,7 +17,10 @@ module.exports = {
         const messageNumber = parseInt(args[1], 10);
 
         if (!channel || isNaN(messageNumber)) {
-            return message.channel.send(t('boostRemove_provide_channel_and_message_number', language));
+            const embed = new EmbedBuilder()
+                .setColor(process.env.ERROR_COLOR)
+                .setDescription(t('boostRemove_provide_channel_and_message_number', language));
+            return message.channel.send({ embeds: [embed] });
         }
 
         try {
@@ -25,11 +28,17 @@ module.exports = {
             const boostMessages = serverData.boostMessages.filter(msg => msg.channelId === channel.id);
 
             if (boostMessages.length === 0) {
-                return message.channel.send(t('boostRemove_no_boost_message', language, { channel: channel.name }));
+                const embed = new EmbedBuilder()
+                    .setColor(process.env.ERROR_COLOR)
+                    .setDescription(t('boostRemove_no_boost_message', language, { channel: channel.name }));
+                return message.channel.send({ embeds: [embed] });
             }
 
             if (messageNumber < 1 || messageNumber > boostMessages.length) {
-                return message.channel.send(t('boostRemove_invalid_message_number', language, { totalMessages: boostMessages.length }));
+                const embed = new EmbedBuilder()
+                    .setColor(process.env.ERROR_COLOR)
+                    .setDescription(t('boostRemove_invalid_message_number', language, { totalMessages: boostMessages.length }));
+                return message.channel.send({ embeds: [embed] });
             }
 
             boostMessages.splice(messageNumber - 1, 1);

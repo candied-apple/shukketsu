@@ -17,7 +17,10 @@ module.exports = {
         const embedScript = args.slice(1).join(' ');
 
         if (!channel || !embedScript) {
-            return message.channel.send(t('sendembed_provide_channel_and_script', language));
+            const errorEmbed = new EmbedBuilder()
+                .setColor(process.env.ERROR_COLOR)
+                .setDescription(t('sendembed_provide_channel_and_script', language));
+            return message.channel.send({ embeds: [errorEmbed] });
         }
 
         try {
@@ -31,7 +34,10 @@ module.exports = {
             const { embed, messageContent } = parseEmbedScript(embedScript, data);
 
             if (!embed && !messageContent) {
-                return message.channel.send(t('sendembed_invalid_script', language));
+                const errorEmbed = new EmbedBuilder()
+                    .setColor(process.env.ERROR_COLOR)
+                    .setDescription(t('sendembed_invalid_script', language));
+                return message.channel.send({ embeds: [errorEmbed] });
             }
 
             await channel.send({ content: messageContent, embeds: embed ? [embed] : [] });
