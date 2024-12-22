@@ -1,30 +1,32 @@
 # Pagination System Documentation
 
 ## Overview
+The pagination system manages large datasets by breaking them into navigable pages, with proper empty state and edge case handling.
 
-The pagination system allows you to display large sets of data in a user-friendly manner by breaking them into multiple pages. This is particularly useful for commands that list items, such as aliases or commands in a help menu.
+## Core Components
 
-## Components
-
-The pagination system consists of the following components:
-
-1. **Embed Generation**: A function to generate an embed for a specific page.
-2. **Buttons**: Navigation buttons to move between pages.
-3. **Collector**: A message component collector to handle button interactions.
-
-## Example Implementation
-
-### Embed Generation
-
-Create a function to generate an embed for a specific page. This function should take the current page number and the data to be displayed as parameters.
-
+### 1. Page Calculation
 ```javascript
-const { EmbedBuilder } = require('discord.js');
+const calculatePages = (dataLength, itemsPerPage) => {
+    return Math.max(1, Math.ceil(dataLength / itemsPerPage));
+};
+```
 
+### 2. Embed Generation
+```javascript
 function generateEmbed(data, page, itemsPerPage, language) {
+    // Handle empty data
+    if (!data || data.length === 0) {
+        return new EmbedBuilder()
+            .setTitle('No Data')
+            .setDescription('No items available.')
+            .setColor(process.env.WARNING_COLOR);
+    }
+
     const start = page * itemsPerPage;
-    const end = start + itemsPerPage;
+    const end = Math.min(start + itemsPerPage, data.length);
     const currentItems = data.slice(start, end);
+    const totalPages = calculatePages(data.length, itemsPerPage);
 
     const embed = new EmbedBuilder()
         .setTitle('Paginated Data')
@@ -32,9 +34,9 @@ function generateEmbed(data, page, itemsPerPage, language) {
         .setFooter({
             text: t('global_page_footer', language, {
                 currentPage: page + 1,
-                totalPages: Math.ceil(data.length / itemsPerPage),
-                start: start + 1,
-                end: Math.min(end, data.length),
+                totalPages,
+                start: data.length ? start + 1 : 0,
+                end,
                 totalEntries: data.length
             })
         });
@@ -47,214 +49,112 @@ function generateEmbed(data, page, itemsPerPage, language) {
 }
 ```
 
-### Buttons
-
-Create navigation buttons to move between pages.
-
+### 3. Button Management
 ```javascript
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-
-function createButtons(currentPage, totalPages) {
+function createButtons(currentPage, totalItems, itemsPerPage) {
+    const totalPages = calculatePages(totalItems, itemsPerPage);
+    
     return new ActionRowBuilder()
         .addComponents(
             new ButtonBuilder()
                 .setCustomId('previous')
                 .setEmoji('<:left:1276955776442958015>')
                 .setStyle(ButtonStyle.Primary)
-                .setDisabled(currentPage === 0),
+                .setDisabled(currentPage === 0 || totalItems === 0),
             new ButtonBuilder()
                 .setCustomId('next')
                 .setEmoji('<:right:1276955810806763571>')
                 .setStyle(ButtonStyle.Primary)
-                .setDisabled(currentPage === totalPages - 1)
+                .setDisabled(currentPage >= totalPages - 1 || totalItems === 0)
         );
 }
 ```
 
-### Collector
-
-Create a message component collector to handle button interactions and update the embed accordingly.
-
+### 4. Pagination Handler
 ```javascript
 async function paginate(message, data, itemsPerPage, language) {
     let currentPage = 0;
-    const totalPages = Math.ceil(data.length / itemsPerPage);
+    
+    // Handle empty data
+    if (!data || data.length === 0) {
+        const embed = generateEmbed([], 0, itemsPerPage, language);
+        return message.channel.send({ embeds: [embed] });
+    }
 
     const embed = generateEmbed(data, currentPage, itemsPerPage, language);
-    const buttons = createButtons(currentPage, totalPages);
+    const buttons = createButtons(currentPage, data.length, itemsPerPage);
 
-    const messageEmbed = await message.channel.send({ embeds: [embed], components: [buttons] });
+    const messageEmbed = await message.channel.send({ 
+        embeds: [embed], 
+        components: [buttons] 
+    });
 
-    const filter = interaction => ['previous', 'next'].includes(interaction.customId) && interaction.user.id === message.author.id;
-    const collector = messageEmbed.createMessageComponentCollector({ filter, time: 60000 });
+    const filter = i => i.user.id === message.author.id;
+    const collector = messageEmbed.createMessageComponentCollector({ 
+        filter, 
+        time: 60000 
+    });
 
     collector.on('collect', async interaction => {
-        if (interaction.customId === 'previous') {
-            currentPage--;
-        } else if (interaction.customId === 'next') {
-            currentPage++;
-        }
+        currentPage = interaction.customId === 'previous' ? 
+            Math.max(0, currentPage - 1) : 
+            Math.min(calculatePages(data.length, itemsPerPage) - 1, currentPage + 1);
 
         const newEmbed = generateEmbed(data, currentPage, itemsPerPage, language);
-        const newButtons = createButtons(currentPage, totalPages);
+        const newButtons = createButtons(currentPage, data.length, itemsPerPage);
 
-        await interaction.update({ embeds: [newEmbed], components: [newButtons] });
+        await interaction.update({ 
+            embeds: [newEmbed], 
+            components: [newButtons] 
+        });
     });
 
     collector.on('end', () => {
-        const disabledRow = new ActionRowBuilder()
-            .addComponents(
-                new ButtonBuilder()
-                    .setCustomId('previous')
-                    .setEmoji('<:left:1276955776442958015>')
-                    .setStyle(ButtonStyle.Primary)
-                    .setDisabled(true),
-                new ButtonBuilder()
-                    .setCustomId('next')
-                    .setEmoji('<:right:1276955810806763571>')
-                    .setStyle(ButtonStyle.Primary)
-                    .setDisabled(true)
-            );
-        messageEmbed.edit({ components: [disabledRow] });
+        const disabledButtons = createButtons(currentPage, data.length, itemsPerPage)
+            .components.map(button => button.setDisabled(true));
+        
+        messageEmbed.edit({ 
+            components: [new ActionRowBuilder().addComponents(disabledButtons)] 
+        });
     });
 }
 ```
 
-### Example Command
+## Edge Cases
 
-Here is an example command that uses the pagination system to list aliases.
+1. **Empty Data**
+- System displays "No items available" message
+- Buttons are disabled
+- Proper zero-state handling
 
+2. **Single Page**
+- Both navigation buttons disabled
+- Footer shows correct count
+
+3. **Error States**
 ```javascript
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-const dbServerData = require('../../models/dbServerData');
-const { getLanguage, t } = require('../../handlers/languageHandler');
-
-module.exports = {
-    name: 'alias list',
-    description: 'List all aliases for all commands',
-    category: 'server',
-    syntax: 'alias list',
-    example: 'alias list',
-    parameters: [],
-    flags: [],
-    permissions: ['Administrator'],
-    async execute(message) {
-        const language = await getLanguage(message.guild.id);
-
-        try {
-            const serverData = await dbServerData.findOne({ serverId: message.guild.id });
-            const aliases = serverData?.aliases || new Map();
-
-            if (aliases.size === 0) {
-                const noAliasesEmbed = new EmbedBuilder()
-                    .setDescription(t('aliasList_no_aliases', language))
-                    .setColor(process.env.WARNING_COLOR);
-                return message.channel.send({ embeds: [noAliasesEmbed] });
-            }
-
-            const aliasesArray = Array.from(aliases.entries());
-            const itemsPerPage = 10;
-            let currentPage = 0;
-
-            const generateEmbed = (page) => {
-                const start = page * itemsPerPage;
-                const end = start + itemsPerPage;
-                const currentAliases = aliasesArray.slice(start, end);
-
-                let description = '';
-                for (const [commandName, commandAliases] of currentAliases) {
-                    description += `**${commandName}**: \`${commandAliases.join(', ')}\`\n`;
-                }
-
-                return new EmbedBuilder()
-                    .setTitle(t('aliasList_all_aliases', language))
-                    .setDescription(description)
-                    .setColor(process.env.DEFAULT_COLOR)
-                    .setFooter({
-                        text: t('global_page_footer', language, {
-                            currentPage: page + 1,
-                            totalPages: Math.ceil(aliasesArray.length / itemsPerPage),
-                            start: start + 1,
-                            end: Math.min(end, aliasesArray.length),
-                            totalEntries: aliasesArray.length
-                        })
-                    });
-            };
-
-            const embed = generateEmbed(currentPage);
-
-            const row = new ActionRowBuilder()
-                .addComponents(
-                    new ButtonBuilder()
-                        .setCustomId('previous')
-                        .setEmoji('<:left:1276955776442958015>')
-                        .setStyle(ButtonStyle.Primary)
-                        .setDisabled(currentPage === 0),
-                    new ButtonBuilder()
-                        .setCustomId('next')
-                        .setEmoji('<:right:1276955810806763571>')
-                        .setStyle(ButtonStyle.Primary)
-                        .setDisabled(currentPage === Math.ceil(aliasesArray.length / itemsPerPage) - 1)
-                );
-
-            const messageEmbed = await message.channel.send({ embeds: [embed], components: [row] });
-
-            const filter = (interaction) => ['previous', 'next'].includes(interaction.customId) && interaction.user.id === message.author.id;
-            const collector = messageEmbed.createMessageComponentCollector({ filter, time: 60000 });
-
-            collector.on('collect', async (interaction) => {
-                if (interaction.customId === 'previous') {
-                    currentPage--;
-                } else if (interaction.customId === 'next') {
-                    currentPage++;
-                }
-
-                const newEmbed = generateEmbed(currentPage);
-
-                const newRow = new ActionRowBuilder()
-                    .addComponents(
-                        new ButtonBuilder()
-                            .setCustomId('previous')
-                            .setEmoji('<:left:1276955776442958015>')
-                            .setStyle(ButtonStyle.Primary)
-                            .setDisabled(currentPage === 0),
-                        new ButtonBuilder()
-                            .setCustomId('next')
-                            .setEmoji('<:right:1276955810806763571>')
-                            .setStyle(ButtonStyle.Primary)
-                            .setDisabled(currentPage === Math.ceil(aliasesArray.length / itemsPerPage) - 1)
-                    );
-
-                await interaction.update({ embeds: [newEmbed], components: [newRow] });
-            });
-
-            collector.on('end', () => {
-                const disabledRow = new ActionRowBuilder()
-                    .addComponents(
-                        new ButtonBuilder()
-                            .setCustomId('previous')
-                            .setEmoji('<:left:1276955776442958015>')
-                            .setStyle(ButtonStyle.Primary)
-                            .setDisabled(true),
-                        new ButtonBuilder()
-                            .setCustomId('next')
-                            .setEmoji('<:right:1276955810806763571>')
-                            .setStyle(ButtonStyle.Primary)
-                            .setDisabled(true)
-                    );
-                messageEmbed.edit({ components: [disabledRow] });
-            });
-        } catch (error) {
-            console.error(error);
-            const errorEmbed = new EmbedBuilder()
-                .setDescription(t('global_error_description', language))
-                .setColor(process.env.ERROR_COLOR);
-            message.channel.send({ embeds: [errorEmbed] });
-        }
-    }
-};
+try {
+    await paginate(message, data, itemsPerPage, language);
+} catch (error) {
+    console.error('Pagination error:', error);
+    await message.channel.send({
+        embeds: [
+            new EmbedBuilder()
+                .setDescription('An error occurred while paginating.')
+                .setColor(process.env.ERROR_COLOR)
+        ]
+    });
+}
 ```
 
-## Conclusion
+## Best Practices
 
-The pagination system helps manage large sets of data by breaking them into multiple pages, making it easier for users to navigate and view the information. Use the provided examples and templates to implement pagination in your commands.
+1. Always validate input data
+2. Handle empty states gracefully
+3. Include proper error handling
+4. Disable buttons appropriately
+5. Set reasonable timeouts
+6. Clean up collectors
+
+## Example Implementation
+See the 'help.js' or 'alias.js' commands for complete implementation examples.

@@ -19,6 +19,7 @@ module.exports = {
             const commandsInCategory = commands.filter(cmd => cmd.category === category);
             const commandsArray = Array.from(commandsInCategory.values());
             const itemsPerPage = 5;
+            const totalPages = Math.ceil(commandsArray.length / itemsPerPage);
             const start = page * itemsPerPage;
             const end = start + itemsPerPage;
             const currentCommands = commandsArray.slice(start, end);
@@ -29,18 +30,22 @@ module.exports = {
                 .setFooter({
                     text: t('global_page_footer', language, {
                         currentPage: page + 1,
-                        totalPages: Math.ceil(commandsArray.length / itemsPerPage),
-                        start: start + 1,
+                        totalPages: totalPages || 1,
+                        start: commandsArray.length ? start + 1 : 0,
                         end: Math.min(end, commandsArray.length),
                         totalEntries: commandsArray.length
                     })
                 });
 
-            currentCommands.forEach(cmd => {
-                embed.addFields({ name: cmd.name, value: cmd.description });
-            });
+            if (currentCommands.length === 0) {
+                embed.setDescription('No commands found in this category.');
+            } else {
+                currentCommands.forEach(cmd => {
+                    embed.addFields({ name: cmd.name, value: cmd.description });
+                });
+            }
 
-            return embed;
+            return { embed, totalPages };
         };
 
         const categoryOptions = categories.map(category => ({
@@ -73,19 +78,20 @@ module.exports = {
                 currentCategory = interaction.values[0];
                 currentPage = 0;
 
-                const embed = generateEmbed(currentCategory, currentPage);
+                const { embed, totalPages } = generateEmbed(currentCategory, currentPage);
+                
                 const buttons = new ActionRowBuilder()
                     .addComponents(
                         new ButtonBuilder()
                             .setCustomId('previous')
                             .setEmoji('<:left:1276955776442958015>')
                             .setStyle(ButtonStyle.Primary)
-                            .setDisabled(currentPage === 0),
+                            .setDisabled(currentPage === 0 || totalPages <= 1),
                         new ButtonBuilder()
                             .setCustomId('next')
                             .setEmoji('<:right:1276955810806763571>')
                             .setStyle(ButtonStyle.Primary)
-                            .setDisabled(currentPage === Math.ceil(commands.filter(cmd => cmd.category === currentCategory).length / 5) - 1)
+                            .setDisabled(currentPage >= totalPages - 1 || totalPages <= 1)
                     );
 
                 await interaction.update({ embeds: [embed], components: [row, buttons] });
@@ -96,19 +102,20 @@ module.exports = {
                     currentPage++;
                 }
 
-                const embed = generateEmbed(currentCategory, currentPage);
+                const { embed, totalPages } = generateEmbed(currentCategory, currentPage);
+                
                 const buttons = new ActionRowBuilder()
                     .addComponents(
                         new ButtonBuilder()
                             .setCustomId('previous')
                             .setEmoji('<:left:1276955776442958015>')
                             .setStyle(ButtonStyle.Primary)
-                            .setDisabled(currentPage === 0),
+                            .setDisabled(currentPage === 0 || totalPages <= 1),
                         new ButtonBuilder()
                             .setCustomId('next')
                             .setEmoji('<:right:1276955810806763571>')
                             .setStyle(ButtonStyle.Primary)
-                            .setDisabled(currentPage === Math.ceil(commands.filter(cmd => cmd.category === currentCategory).length / 5) - 1)
+                            .setDisabled(currentPage >= totalPages - 1 || totalPages <= 1)
                     );
 
                 await interaction.update({ embeds: [embed], components: [row, buttons] });

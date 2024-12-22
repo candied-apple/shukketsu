@@ -102,8 +102,8 @@ function loadCommands(client) {
                 .setColor(process.env.DEFAULT_COLOR)
                 .setDescription(command.description)
                 .addFields(
-                    { name: 'Permissions', value: command.permissions.join(', ') || t('no_parameters', language), inline: true },
-                    { name: 'Usage', value: `\`\`\`Syntax: ${command.syntax}\`\`\` \`\`\`\nExample: ${command.example}\`\`\`` || t('no_syntax_example', language) },
+                    { name: 'Permissions', value: command.permissions.join(', ') || t('handler_no_permission', language), inline: true },
+                    { name: 'Usage', value: `\`\`\`Syntax: ${command.syntax}\`\`\` \`\`\`\nExample: ${command.example}\`\`\`` || t('handler_no_syntax_example', language) },
                 )
             return message.channel.send({ embeds: [embed] });
         }

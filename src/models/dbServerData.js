@@ -82,6 +82,10 @@ const dbServerDataSchema = new mongoose.Schema({
     voicemasterinterfaceid: {
         type: String,
         default: null
+    },
+    autoroles: {
+        type: [String],
+        default: []
     }
 });
 

@@ -213,6 +213,19 @@
     "voicemasterMenu_invalid_user_limit": "Invalid user limit. Please enter a number between 0 and 99.",
     "voicemasterMenu_user_limit_set": "User limit has been set to {{limit}}.",
     "voicemasterMenu_rename_limit_reached": "You have reached the rename limit. Please try again later.",
-    "voicemasterMenu_channel_renamed": "The channel has been renamed to {{name}}."
+    "voicemasterMenu_channel_renamed": "The channel has been renamed to {{name}}.",
+
+    "autorole_list_no_data": "No server data found.",
+    "autorole_add_success": "The role {{role}} has been added as an autorole.",
+    "autorole_remove_success": "The role {{role}} has been removed from autoroles.",
+    "autorole_reset_success": "All autoroles have been cleared.",
+    "autorole_list_title": "Autoroles",
+    "autorole_list_empty": "There are no autoroles set.",
+
+    "reactionroleadd_missing_args": "Please provide a message link, reaction, and role.",
+    "reactionroleadd_role_not_found": "Role not found.",
+    "reactionroleadd_channel_not_found": "Channel not found.",
+    "reactionroleadd_message_not_found": "Message not found.",
+    "reactionroleadd_success": "Successfully added reaction {{reaction}} to role {{role}}."
 
 }
