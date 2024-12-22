@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const dbMemberDataSchema = new mongoose.Schema({
     serverId: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     memberId: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     xp: {
         type: Number,
