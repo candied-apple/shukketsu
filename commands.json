@@ -1,0 +1,802 @@
+[
+  {
+    "name": "autorole add",
+    "description": "Adds an autorole and assigns it to members on join.",
+    "category": "server",
+    "syntax": "autorole add <role>",
+    "example": "autorole add @Member",
+    "parameters": [
+      "role"
+    ],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "autorole list",
+    "description": "View a list of every autorole.",
+    "category": "server",
+    "syntax": "autorole list",
+    "example": "autorole list",
+    "parameters": [],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "autorole remove",
+    "description": "Removes an autorole and stops assigning it on join.",
+    "category": "server",
+    "syntax": "autorole remove <role>",
+    "example": "autorole remove @Member",
+    "parameters": [
+      "role"
+    ],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "autorole reset",
+    "description": "Clears every autorole for the guild.",
+    "category": "server",
+    "syntax": "autorole reset",
+    "example": "autorole reset",
+    "parameters": [],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "levels",
+    "description": "View your level and experience",
+    "category": "levels",
+    "syntax": "levels [member]",
+    "example": "levels @username",
+    "parameters": [
+      "member"
+    ],
+    "paramOptional": true,
+    "permissions": []
+  },
+  {
+    "name": "levels add",
+    "description": "Create level role",
+    "category": "levels",
+    "syntax": "levels add <role> <rank>",
+    "example": "levels add @Role 10",
+    "parameters": [
+      "role",
+      "rank"
+    ],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "levels cleanup",
+    "description": "Reset level & XP for members no longer in the server",
+    "category": "admin",
+    "syntax": "levels cleanup",
+    "example": "levels cleanup",
+    "parameters": [],
+    "paramOptional": true,
+    "flags": [],
+    "permissions": [
+      "Administrator"
+    ]
+  },
+  {
+    "name": "levels config",
+    "description": "View server configuration for Leveling system",
+    "category": "server",
+    "syntax": "levels config",
+    "example": "levels config",
+    "parameters": [],
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "levels ignore",
+    "description": "Ignore a channel or role for XP.",
+    "category": "levels",
+    "syntax": "levels ignore <target>",
+    "example": "levels ignore #general|@role",
+    "parameters": [
+      "target"
+    ],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "levels leaderboard",
+    "description": "View the highest ranking members.",
+    "category": "server",
+    "syntax": "levels leaderboard",
+    "example": "levels leaderboard",
+    "parameters": [],
+    "paramOptional": true,
+    "flags": [],
+    "permissions": []
+  },
+  {
+    "name": "levels list",
+    "description": "View all ignored channels and roles for XP.",
+    "category": "levels",
+    "syntax": "levels list",
+    "example": "levels list",
+    "parameters": [],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "levels lock",
+    "description": "Disable leveling system",
+    "category": "server",
+    "syntax": "levels lock",
+    "example": "levels lock",
+    "parameters": [],
+    "paramOptional": true,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "levels message",
+    "description": "Set a custom level-up message.",
+    "category": "levels",
+    "syntax": "levels message <text>",
+    "example": "levels message Congratulations {member}, you have leveled up to level {level}!",
+    "parameters": [
+      "text"
+    ],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "levels messagemode",
+    "description": "Set up where level up messages will be sent.",
+    "category": "levels",
+    "syntax": "levels messagemode <context|none|channel>",
+    "example": "levels messagemode context",
+    "parameters": [
+      "mode"
+    ],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "levels messages",
+    "description": "Toggle level up messages for yourself.",
+    "category": "user",
+    "syntax": "levels messages <setting>",
+    "example": "levels messages on",
+    "parameters": [
+      "setting"
+    ],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": []
+  },
+  {
+    "name": "levels remove",
+    "description": "Remove level role",
+    "category": "levels",
+    "syntax": "levels remove <rank>",
+    "example": "levels remove 10",
+    "parameters": [
+      "rank"
+    ],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "levels reset",
+    "description": "Reset all members level and XP.",
+    "category": "server",
+    "syntax": "levels reset",
+    "example": "levels reset",
+    "parameters": [],
+    "paramOptional": true,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "levels roles",
+    "description": "View all level roles",
+    "category": "levels",
+    "syntax": "levels roles",
+    "example": "levels roles",
+    "parameters": [],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": []
+  },
+  {
+    "name": "levels setrate",
+    "description": "Set multiplier for XP gain.",
+    "category": "levels",
+    "syntax": "levels setrate <multiplier>",
+    "example": "levels setrate 2",
+    "parameters": [
+      "multiplier"
+    ],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "levels stackrole",
+    "description": "Enable or disable stacking of roles",
+    "category": "levels",
+    "syntax": "levels stackrole <on|off>",
+    "example": "levels stackrole on",
+    "parameters": [
+      "option"
+    ],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "levels sync",
+    "description": "Update your members level roles",
+    "category": "levels",
+    "syntax": "levels sync",
+    "example": "levels sync",
+    "parameters": [],
+    "paramOptional": true,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "levels unignore",
+    "description": "Unignore a channel or role for XP.",
+    "category": "levels",
+    "syntax": "levels unignore <target>",
+    "example": "levels unignore #general|@role",
+    "parameters": [
+      "target"
+    ],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "levels unlock",
+    "description": "Enable leveling system",
+    "category": "server",
+    "syntax": "levels unlock",
+    "example": "levels unlock",
+    "parameters": [],
+    "paramOptional": true,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "levels update",
+    "description": "Update a level role's rank",
+    "category": "levels",
+    "syntax": "levels update <role> <rank>",
+    "example": "levels update @Role 15",
+    "parameters": [
+      "role",
+      "rank"
+    ],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "removexp",
+    "description": "Remove experience from a user",
+    "category": "levels",
+    "syntax": "removexp <user> <amount>",
+    "example": "removexp @username 1000",
+    "parameters": [
+      "user",
+      "amount"
+    ],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "setlevel",
+    "description": "Set a user's level",
+    "category": "levels",
+    "syntax": "setlevel <user> <level>",
+    "example": "setlevel @username 10",
+    "parameters": [
+      "user",
+      "level"
+    ],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "setxp",
+    "description": "Set a user's experience",
+    "category": "levels",
+    "syntax": "setxp <user> <amount>",
+    "example": "setxp @username 1000",
+    "parameters": [
+      "user",
+      "amount"
+    ],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "help",
+    "description": "Displays a help menu with all commands categorized.",
+    "category": "server",
+    "syntax": "help",
+    "example": "help",
+    "parameters": [],
+    "flags": [],
+    "permissions": [
+      "Administrator"
+    ]
+  },
+  {
+    "name": "sendembed",
+    "description": "Send an embed using an embed script.",
+    "category": "misc",
+    "syntax": "sendembed <channel> <embedScript>",
+    "example": "sendembed #general {embed}$v{title: Hello}$v{description: This is an embed}",
+    "parameters": [
+      "channel",
+      "embedScript"
+    ],
+    "flags": [],
+    "permissions": [
+      "Administrator"
+    ]
+  },
+  {
+    "name": "ping",
+    "description": "Replies with Pong along with the REST ping!",
+    "category": "owner",
+    "syntax": "ping",
+    "example": "ping",
+    "parameters": [],
+    "flags": [],
+    "permissions": [
+      "Administrator"
+    ]
+  },
+  {
+    "name": "whitelist add",
+    "description": "Add a server to the whitelist",
+    "category": "owner",
+    "syntax": "whitelist add <userId> <serverId>",
+    "example": "whitelist add 123456789012345678 123456789012345678",
+    "parameters": [
+      "userId",
+      "serverId"
+    ],
+    "flags": [],
+    "permissions": [
+      "Administrator"
+    ]
+  },
+  {
+    "name": "whitelist remove",
+    "description": "Remove a server from the whitelist",
+    "category": "owner",
+    "syntax": "whitelist remove <serverId>",
+    "example": "whitelist remove 123456789012345678",
+    "parameters": [
+      "serverId"
+    ],
+    "flags": [],
+    "permissions": [
+      "Administrator"
+    ]
+  },
+  {
+    "name": "alias add",
+    "description": "Add an alias for a command",
+    "category": "server",
+    "syntax": "alias add <commandName> <alias>",
+    "example": "alias add ping pong pong",
+    "parameters": [
+      "commandName",
+      "alias"
+    ],
+    "flags": [],
+    "permissions": [
+      "Administrator"
+    ]
+  },
+  {
+    "name": "alias list",
+    "description": "List all aliases for all commands",
+    "category": "server",
+    "syntax": "alias list",
+    "example": "alias list",
+    "parameters": [],
+    "flags": [],
+    "permissions": [
+      "Administrator"
+    ]
+  },
+  {
+    "name": "alias remove",
+    "description": "Remove an alias for a command",
+    "category": "server",
+    "syntax": "alias remove <commandName> <alias>",
+    "example": "alias remove ping pong",
+    "parameters": [
+      "commandName",
+      "alias"
+    ],
+    "flags": [],
+    "permissions": [
+      "Administrator"
+    ]
+  },
+  {
+    "name": "alias reset",
+    "description": "Reset every alias for all commands",
+    "category": "server",
+    "syntax": "alias reset",
+    "example": "alias reset",
+    "parameters": [],
+    "flags": [],
+    "permissions": [
+      "Manage Guild"
+    ]
+  },
+  {
+    "name": "fakepermissions add",
+    "description": "Grant a fake permission to a role",
+    "category": "server",
+    "syntax": "fakepermissions add <role> <permission>",
+    "example": "fakepermissions add @Moderator ban_members",
+    "parameters": [
+      "role",
+      "permission"
+    ],
+    "flags": [],
+    "permissions": [
+      "Administrator"
+    ]
+  },
+  {
+    "name": "fakepermissions list",
+    "description": "List all fake permissions",
+    "category": "server",
+    "syntax": "fakepermissions list [role]",
+    "example": "fakepermissions list @Moderator",
+    "parameters": [
+      "role"
+    ],
+    "flags": [],
+    "permissions": [
+      "Administrator"
+    ]
+  },
+  {
+    "name": "fakepermissions remove",
+    "description": "Remove a fake permission from a role",
+    "category": "server",
+    "syntax": "fakepermissions remove <role> <permission>",
+    "example": "fakepermissions remove @Moderator ban_members",
+    "parameters": [
+      "role",
+      "permission"
+    ],
+    "flags": [],
+    "permissions": [
+      "Administrator"
+    ]
+  },
+  {
+    "name": "fakepermissions reset",
+    "description": "Resets all fake permissions",
+    "category": "server",
+    "syntax": "fakepermissions reset",
+    "example": "fakepermissions reset",
+    "parameters": [],
+    "flags": [],
+    "permissions": [
+      "Administrator"
+    ]
+  },
+  {
+    "name": "prefix set",
+    "description": "Set command prefix for the server.",
+    "category": "server",
+    "syntax": "prefix set <new_prefix>",
+    "example": "prefix set !",
+    "parameters": [
+      "new_prefix"
+    ],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": [
+      "Administrator"
+    ]
+  },
+  {
+    "name": "set language",
+    "description": "Sets the language for the server.",
+    "category": "server",
+    "syntax": "ping",
+    "example": "ping",
+    "parameters": [],
+    "flags": [],
+    "permissions": [
+      "Administrator"
+    ]
+  },
+  {
+    "name": "boosts add",
+    "description": "Add a boosts message for a channel",
+    "category": "server",
+    "syntax": "boosts add <channel> <message> [--self_destruct <6-60>]",
+    "example": "boosts add #general Thank you for boosting, {{user}}! --self_destruct 10",
+    "parameters": [
+      "channel",
+      "message"
+    ],
+    "flags": [
+      "--self_destruct"
+    ],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "boosts list",
+    "description": "View all boosts messages",
+    "category": "server",
+    "syntax": "boosts list",
+    "example": "boosts list",
+    "parameters": [],
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "boosts remove",
+    "description": "Remove a boosts message from a channel",
+    "category": "server",
+    "syntax": "boosts remove <channel> <messagenumber>",
+    "example": "boosts remove #general 1",
+    "parameters": [
+      "channel",
+      "messagenumber"
+    ],
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "boosts view",
+    "description": "View boosts message for a channel",
+    "category": "server",
+    "syntax": "boosts view <channel>",
+    "example": "boosts view #general",
+    "parameters": [
+      "channel"
+    ],
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "goodbye add",
+    "description": "Add a goodbye message for a channel",
+    "category": "server",
+    "syntax": "goodbye add <channel> <message> [--self_destruct <6-60>]",
+    "example": "goodbye add #general Goodbye, {{user}}! --self_destruct 10",
+    "parameters": [
+      "channel",
+      "message"
+    ],
+    "flags": [
+      "--self_destruct"
+    ],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "goodbye list",
+    "description": "View all goodbye messages",
+    "category": "server",
+    "syntax": "goodbye list",
+    "example": "goodbye list",
+    "parameters": [],
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "goodbye remove",
+    "description": "Remove a goodbye message from a channel",
+    "category": "server",
+    "syntax": "goodbye remove <channel> <messagenumber>",
+    "example": "goodbye remove #general 1",
+    "parameters": [
+      "channel",
+      "messagenumber"
+    ],
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "goodbye view",
+    "description": "View goodbye message for a channel",
+    "category": "server",
+    "syntax": "goodbye view <channel>",
+    "example": "goodbye view #general",
+    "parameters": [
+      "channel"
+    ],
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "welcome add",
+    "description": "Add a welcome message for a channel",
+    "category": "server",
+    "syntax": "welcome add <channel> <message> [--self_destruct <6-60>]",
+    "example": "welcome add #general Welcome to the server, {{user}}! --self_destruct 10",
+    "parameters": [
+      "channel",
+      "message"
+    ],
+    "flags": [
+      "--self_destruct"
+    ],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "welcome list",
+    "description": "View all welcome messages",
+    "category": "server",
+    "syntax": "welcome list",
+    "example": "welcome list",
+    "parameters": [],
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "welcome remove",
+    "description": "Remove a welcome message from a channel",
+    "category": "server",
+    "syntax": "welcome remove <channel> <messagenumber>",
+    "example": "welcome remove #general 1",
+    "parameters": [
+      "channel",
+      "messagenumber"
+    ],
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "welcome view",
+    "description": "View welcome message for a channel",
+    "category": "server",
+    "syntax": "welcome view <channel>",
+    "example": "welcome view #general",
+    "parameters": [
+      "channel"
+    ],
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "avatar",
+    "description": "Displays the avatar of a specified user or the message author if no user is specified.",
+    "category": "user",
+    "syntax": "avatar <user>",
+    "example": "avatar @username",
+    "parameters": [
+      "user"
+    ],
+    "paramOptional": true,
+    "flags": [],
+    "permissions": []
+  },
+  {
+    "name": "banner",
+    "description": "Displays the banner of a specified user.",
+    "category": "user",
+    "syntax": "banner <user>",
+    "example": "banner @username",
+    "parameters": [
+      "user"
+    ],
+    "flags": [],
+    "permissions": []
+  },
+  {
+    "name": "voicemaster nuke",
+    "description": "Remove voicemaster channels from database and delete them in server",
+    "category": "server",
+    "syntax": "voicemaster nuke",
+    "example": "voicemaster nuke",
+    "parameters": [],
+    "paramOptional": true,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  },
+  {
+    "name": "voicemaster setup",
+    "description": "Setup voicemaster",
+    "category": "server",
+    "syntax": "voicemaster setup",
+    "example": "voicemaster setup",
+    "parameters": [],
+    "paramOptional": true,
+    "flags": [],
+    "permissions": [
+      "ManageGuild"
+    ]
+  }
+]
