@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const dbMemberDataSchema = new mongoose.Schema({
     serverId: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     memberId: {
         type: String,
@@ -23,6 +22,8 @@ const dbMemberDataSchema = new mongoose.Schema({
         default: ''
     },
 });
+
+dbMemberDataSchema.index({ serverId: 1, memberId: 1 }, { unique: true });
 
 dbMemberDataSchema.pre('save', function(next) {
     this.updatedAt = Date.now();

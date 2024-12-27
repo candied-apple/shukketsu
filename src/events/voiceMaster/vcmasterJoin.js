@@ -39,7 +39,7 @@ module.exports = {
                 { upsert: true }
             );
         } catch (error) {
-            console.error('Error creating or moving to the new channel:', error);
+            console.error(`Error creating or moving to the new channel for user ${userId} in guild ${guildId}:`, error);
         }
     },
 };
