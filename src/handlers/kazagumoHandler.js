@@ -3,7 +3,7 @@ const KazagumoFilter = require('kazagumo-filter');
 const { Connectors } = require('shoukaku');
 const { Client, EmbedBuilder } = require('discord.js');
 const { getLanguage, t } = require('../handlers/languageHandler');
-const fetch = require('node-fetch');
+const axios = require('axios');
 
 const Nodes = [{
   name: 'local',
@@ -13,20 +13,19 @@ const Nodes = [{
 }];
 
 function setVoiceStatus(channelId, status) {
-  return new Promise(async (resolve, reject) => {
-    await fetch(`https://discord.com/api/v9/channels/${channelId}/voice-status`, {
-      "headers": {
-        "accept": "*/*",
-        "authorization": `Bot token`,
-        "content-type": "application/json"
-      },
-      "body": JSON.stringify({ "status": status }),
-      "method": "PUT"
-    })
-      .then(e => e.text())
-      .then(e => resolve(e))
-      .catch(e => reject(e))
+  return axios.put(`https://discord.com/api/v9/channels/${channelId}/voice-status`, {
+    status: status
+  }, {
+    headers: {
+      'accept': '*/*',
+      'authorization': `Bot token`,
+      'content-type': 'application/json'
+    }
   })
+  .then(response => response.data)
+  .catch(error => {
+    throw error;
+  });
 }
 
 module.exports = (client) => {
