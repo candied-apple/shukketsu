@@ -75,7 +75,7 @@ function loadCommands(client) {
         if (command.category === 'owner' && !owners.includes(message.author.id)) {
             const embed = new EmbedBuilder()
                 .setColor(process.env.ERROR_COLOR)
-                .setDescription(t('handler_no_permission', language, { permission: 'Bot Owner' }));
+                .setDescription(t('handler_invalid_perms', language, { permission: 'Bot Owner' }));
             return message.channel.send({ embeds: [embed] });
         }
     
@@ -87,7 +87,7 @@ function loadCommands(client) {
                     if (command.permissions && !message.member.permissions.has(command.permissions)) {
                         const embed = new EmbedBuilder()
                             .setColor("#faa81a")
-                            .setDescription(t('handler_no_permission', language, { permission: command.permissions }));
+                            .setDescription(t('handler_invalid_perms', language, { permission: command.permissions }));
                         return message.channel.send({ embeds: [embed] });
                     }
                 }
@@ -102,7 +102,6 @@ function loadCommands(client) {
                 .setColor(process.env.DEFAULT_COLOR)
                 .setDescription(command.description)
                 .addFields(
-                    { name: 'Permissions', value: command.permissions.join(', ') || t('handler_no_permission', language), inline: true },
                     { name: 'Usage', value: `\`\`\`Syntax: ${command.syntax}\`\`\` \`\`\`\nExample: ${command.example}\`\`\`` || t('handler_no_syntax_example', language) },
                 )
             return message.channel.send({ embeds: [embed] });

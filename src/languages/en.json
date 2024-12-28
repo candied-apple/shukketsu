@@ -2,7 +2,7 @@
     "global_error_description": "<:deny:1276289955920085122> There was an error while executing the command. Please contact [shukketsu support](https://discord.gg/shukketsu) if the issue persists.",
     "global_page_footer": "Page {{currentPage}} of {{totalPages}} | Showing {{start}}-{{end}} of {{totalEntries}} entries",
 
-    "handler_no_permission": "<:warning:1276238448189116517> You do not have permission to use this command.\nRequired permission: `{{permission}}`",
+    "handler_invalid_perms": "<:warning:1276238448189116517> You do not have permission to use this command.\nRequired permission: `{{permission}}`",
     "handler_no_parameters": "No parameters provided.",
     "handler_no_syntax_example": "No syntax and example provided.",
 
@@ -238,6 +238,45 @@
 
     "provide_serverId": "Please provide a server ID.",
     "server_removed_from_whitelist": "Server with ID {serverId} has been removed from the whitelist.",
-    "server_not_found_in_whitelist": "Server not found in the whitelist."
+    "server_not_found_in_whitelist": "Server not found in the whitelist.",
+
+    "play_no_query": "Please provide a song name or URL to play.",
+    "play_no_voice_channel": "You need to be in a voice channel to play music.",
+    "play_no_results": "No results found for your query.",
+    "play_playlist_queued": "Queued {{count}} songs from the playlist: {{name}}.",
+    "play_song_queued": "Queued the song: {{title}}.",
+
+    "pause_no_player": "No player found.",
+    "pause_success": "Paused the music.",
+
+    "previous_no_player": "No player found.",
+    "previous_no_track": "No previous track found.",
+    "previous_playing": "Playing previous track.",
+
+    "queue_no_player": "No player found.",
+    "queue_empty": "The queue is empty.",
+    "queue_display": "Current Queue:\n{{queue}}",
+
+    "resume_no_player": "No player found.",
+    "resume_success": "Resumed the music.",
+
+    "skip_no_player": "No player found.",
+    "skip_success": "Skipped to **{{title}}** by **{{author}}**.",
+
+    "stop_no_player": "No player found.",
+    "stop_success": "Stopped the music and cleared the queue.",
+
+    "filter_no_player": "There is no active player in this server.",
+    "filter_select_placeholder": "Select a filter",
+    "filter_select_description": "Please select a filter from the menu below:",
+    "filter_applied": "The filter **{{filter}}** is being applied.",
+
+    "volume_invalid": "Please provide a valid volume between 0 and 100.",
+    "volume_set": "Volume has been set to {{volume}}.",
+
+    "player_start": "Now playing **{{title}}** by **{{author}}**",
+    "player_end": "Finished playing",
+    "player_empty": "Destroyed player due to inactivity."
+
     
 }

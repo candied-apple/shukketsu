@@ -73,7 +73,7 @@ module.exports = {
 
                             row.addComponents(videoButton);
 
-                            await message.reply({
+                            await message.channel.send({
                                 embeds: [mainEmbed],
                                 components: [row],
                                 allowedMentions: { parse: [] }
@@ -85,7 +85,7 @@ module.exports = {
                             const attachment = new AttachmentBuilder(videoBuffer, { name: 'video.mp4' });
 
                             // Send the embed and video to Discord in a single message as a reply
-                            await message.reply({
+                            await message.channel.send({
                                 embeds: [mainEmbed],
                                 components: [row],
                                 files: [attachment],
@@ -98,7 +98,7 @@ module.exports = {
                         if (images.length === 1) {
                             // If there is only one image, set it in the main embed
                             mainEmbed.setImage(images[0].url);
-                            await message.reply({ embeds: [mainEmbed], components: [row], allowedMentions: { parse: [] } });
+                            await message.channel.send({ embeds: [mainEmbed], components: [row], allowedMentions: { parse: [] } });
                         } else if (images.length > 1) {
                             // If there are multiple images, create separate embeds for each
                             const embeds = [mainEmbed];
@@ -110,19 +110,19 @@ module.exports = {
                             });
 
                             // Send the embeds and the button to the channel
-                            await message.reply({ embeds: embeds, components: [row], allowedMentions: { parse: [] } });
+                            await message.channel.send({ embeds: embeds, components: [row], allowedMentions: { parse: [] } });
                         } else {
                             // If there are no images, just send the main embed
-                            await message.reply({ embeds: [mainEmbed], components: [row], allowedMentions: { parse: [] } });
+                            await message.channel.send({ embeds: [mainEmbed], components: [row], allowedMentions: { parse: [] } });
                         }
                     }
                 } else {
                     // If there is no media, just send the main embed
-                    await message.reply({ embeds: [mainEmbed], components: [row], allowedMentions: { parse: [] } });
+                    await message.channel.send({ embeds: [mainEmbed], components: [row], allowedMentions: { parse: [] } });
                 }
             } catch (error) {
                 console.error('Error fetching tweet status:', error);
-                await message.reply({ content: 'Error fetching tweet details.', allowedMentions: { parse: [] } });
+                await message.channel.send({ content: 'Error fetching tweet details.', allowedMentions: { parse: [] } });
             }
         }
     },

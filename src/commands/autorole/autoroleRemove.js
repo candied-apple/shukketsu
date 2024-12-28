@@ -15,21 +15,21 @@ module.exports = {
     async execute(message, args) {
         try {
             if (!args[0]) {
-                return message.reply('Please specify a role to remove from autoroles.');
+                return message.channel.send('Please specify a role to remove from autoroles.');
             }
 
             const role = message.mentions.roles.first() || message.guild.roles.cache.get(args[0]);
             if (!role) {
-                return message.reply('Role not found. Please mention a valid role or provide a valid role ID.');
+                return message.channel.send('Role not found. Please mention a valid role or provide a valid role ID.');
             }
 
             const serverData = await dbServerData.findOne({ serverId: message.guild.id });
             if (!serverData) {
-                return message.reply('Server data not found.');
+                return message.channel.send('Server data not found.');
             }
 
             if (!serverData.autoroles || !serverData.autoroles.includes(role.id)) {
-                return message.reply('This role is not an autorole.');
+                return message.channel.send('This role is not an autorole.');
             }
 
             serverData.autoroles = serverData.autoroles.filter(roleId => roleId !== role.id);

@@ -5,6 +5,7 @@ const { loadSlashCommands } = require('./handlers/slashCommandHandler');
 const { loadEvents } = require('./handlers/eventHandler');
 const { connectToDatabase } = require('./handlers/mongooseHandler');
 const { loadLanguages } = require('./handlers/languageHandler');
+const loadKazagumo = require('./handlers/kazagumoHandler');
 
 const client = new Client({ 
     intents: [
@@ -18,7 +19,6 @@ const client = new Client({
         GatewayIntentBits.GuildModeration,
     ] 
 });
-
 // Initialize Collections
 client.commands = new Collection();
 client.slashCommands = new Collection();
@@ -29,6 +29,7 @@ loadLanguages();
 loadCommands(client);
 loadSlashCommands(client);
 loadEvents(client);
+loadKazagumo(client);
 
 
 

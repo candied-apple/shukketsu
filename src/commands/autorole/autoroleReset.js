@@ -16,7 +16,7 @@ module.exports = {
         try {
             const serverData = await dbServerData.findOne({ serverId: message.guild.id });
             if (!serverData) {
-                return message.reply('Server data not found.');
+                return message.channel.send('Server data not found.');
             }
 
             serverData.autoroles = [];
