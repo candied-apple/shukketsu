@@ -3,6 +3,7 @@ const KazagumoFilter = require('kazagumo-filter');
 const { Connectors } = require('shoukaku');
 const { Client, EmbedBuilder } = require('discord.js');
 const { getLanguage, t } = require('../handlers/languageHandler');
+const fetch = require('node-fetch');
 
 const Nodes = [{
   name: 'local',
@@ -10,6 +11,23 @@ const Nodes = [{
   auth: 'saher.inzeworld.com',
   secure: false
 }];
+
+function setVoiceStatus(channelId, status) {
+  return new Promise(async (resolve, reject) => {
+    await fetch(`https://discord.com/api/v9/channels/${channelId}/voice-status`, {
+      "headers": {
+        "accept": "*/*",
+        "authorization": `Bot token`,
+        "content-type": "application/json"
+      },
+      "body": JSON.stringify({ "status": status }),
+      "method": "PUT"
+    })
+      .then(e => e.text())
+      .then(e => resolve(e))
+      .catch(e => reject(e))
+  })
+}
 
 module.exports = (client) => {
   const kazagumo = new Kazagumo({
@@ -45,6 +63,9 @@ module.exports = (client) => {
 
     client.channels.cache.get(player.textId)?.send({ embeds: [embed] })
       .then(x => player.data.set('message', x));
+
+    // Set voice channel status to the current music
+    await setVoiceStatus(player.voiceId, `Playing: ${track.title}`);
   });
 
   kazagumo.on('playerEnd', async (player) => {

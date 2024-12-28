@@ -34,7 +34,7 @@ module.exports = {
                 guildId: message.guild.id,
                 textId: message.channel.id,
                 voiceId: channel.id,
-                volume: 40
+                volume: 20
             });
 
             const result = await message.client.kazagumo.search(query, { requester: message.author });

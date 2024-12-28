@@ -397,6 +397,109 @@
     ]
   },
   {
+    "name": "filter",
+    "description": "Apply audio filters to the current music player",
+    "category": "music",
+    "syntax": "filter",
+    "example": "filter",
+    "parameters": [],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": []
+  },
+  {
+    "name": "pause",
+    "description": "Pause the current music",
+    "category": "music",
+    "syntax": "pause",
+    "example": "pause",
+    "parameters": [],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": []
+  },
+  {
+    "name": "play",
+    "description": "Play a song from YouTube",
+    "category": "music",
+    "syntax": "play <song>",
+    "example": "play Never Gonna Give You Up",
+    "parameters": [
+      "song"
+    ],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": []
+  },
+  {
+    "name": "previous",
+    "description": "Play the previous song",
+    "category": "music",
+    "syntax": "previous",
+    "example": "previous",
+    "parameters": [],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": []
+  },
+  {
+    "name": "queue",
+    "description": "Display the current music queue",
+    "category": "music",
+    "syntax": "queue",
+    "example": "queue",
+    "parameters": [],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": []
+  },
+  {
+    "name": "resume",
+    "description": "Resume the current music",
+    "category": "music",
+    "syntax": "resume",
+    "example": "resume",
+    "parameters": [],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": []
+  },
+  {
+    "name": "skip",
+    "description": "Skip the current song",
+    "category": "music",
+    "syntax": "skip",
+    "example": "skip",
+    "parameters": [],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": []
+  },
+  {
+    "name": "stop",
+    "description": "Stop the current music and clear the queue",
+    "category": "music",
+    "syntax": "stop",
+    "example": "stop",
+    "parameters": [],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": []
+  },
+  {
+    "name": "volume",
+    "description": "Change the volume",
+    "category": "music",
+    "syntax": "volume <volume>",
+    "example": "volume 50",
+    "parameters": [
+      "volume"
+    ],
+    "paramOptional": false,
+    "flags": [],
+    "permissions": []
+  },
+  {
     "name": "ping",
     "description": "Replies with Pong along with the REST ping!",
     "category": "owner",
