@@ -4,11 +4,12 @@ const { Connectors } = require('shoukaku');
 const { Client, EmbedBuilder } = require('discord.js');
 const { getLanguage, t } = require('../handlers/languageHandler');
 const axios = require('axios');
+require('dotenv').config();
 
 const Nodes = [{
-  name: 'local',
-  url: 'lava.inzeworld.com:3128',
-  auth: 'saher.inzeworld.com',
+  name: 'Koi Node V4',
+  url: 'lavav4.prplmoe.me:1118',
+  auth: 'prplmoe.me',
   secure: false
 }];
 
@@ -18,7 +19,7 @@ function setVoiceStatus(channelId, status) {
   }, {
     headers: {
       'accept': '*/*',
-      'authorization': `Bot token`,
+      'authorization': `Bot ${process.env.TOKEN}`,
       'content-type': 'application/json'
     }
   })
@@ -55,6 +56,7 @@ module.exports = (client) => {
   });
 
   kazagumo.on('playerStart', async (player, track) => {
+    await setVoiceStatus(player.voiceId, `${track.title}`);
     const language = await getLanguage(player.guildId);
     const embed = new EmbedBuilder()
       .setDescription(t('player_start', language, { title: track.title, author: track.author }))
@@ -62,9 +64,6 @@ module.exports = (client) => {
 
     client.channels.cache.get(player.textId)?.send({ embeds: [embed] })
       .then(x => player.data.set('message', x));
-
-    // Set voice channel status to the current music
-    await setVoiceStatus(player.voiceId, `Playing: ${track.title}`);
   });
 
   kazagumo.on('playerEnd', async (player) => {
