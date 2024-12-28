@@ -56,7 +56,7 @@ module.exports = (client) => {
   });
 
   kazagumo.on('playerStart', async (player, track) => {
-    await setVoiceStatus(player.voiceId, `${track.title}`);
+    await setVoiceStatus(player.voiceId, `<a:shukketsu:1305529972391153724> ${track.title}`);
     const language = await getLanguage(player.guildId);
     const embed = new EmbedBuilder()
       .setDescription(t('player_start', language, { title: track.title, author: track.author }))
