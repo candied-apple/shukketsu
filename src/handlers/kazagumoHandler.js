@@ -7,9 +7,9 @@ const axios = require('axios');
 require('dotenv').config();
 
 const Nodes = [{
-  name: 'Koi Node V4',
-  url: 'lavav4.prplmoe.me:1118',
-  auth: 'prplmoe.me',
+  name: 'INZEWORLD.COM (DE)',
+  url: 'lava.inzeworld.com:3128',
+  auth: 'saher.inzeworld.com',
   secure: false
 }];
 
