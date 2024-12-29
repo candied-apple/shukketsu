@@ -22,6 +22,11 @@ module.exports = {
         return message.channel.send({ embeds: [embed] });
       }
 
+      const playerDataMessage = player.data.get('message');
+      if (playerDataMessage) {
+        await playerDataMessage.delete();
+      }
+
       await player.destroy();
       const embed = new EmbedBuilder()
         .setColor(process.env.DEFAULT_COLOR)

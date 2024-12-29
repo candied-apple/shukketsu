@@ -1,7 +1,7 @@
 const { Kazagumo, Plugins } = require('kazagumo');
 const KazagumoFilter = require('kazagumo-filter');
 const { Connectors } = require('shoukaku');
-const { Client, EmbedBuilder } = require('discord.js');
+const { Client, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const { getLanguage, t } = require('../handlers/languageHandler');
 const axios = require('axios');
 require('dotenv').config();
@@ -27,6 +27,13 @@ function setVoiceStatus(channelId, status) {
   .catch(error => {
     throw error;
   });
+}
+
+function formatDuration(ms) {
+  const totalSeconds = Math.floor(ms / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
 
 module.exports = (client) => {
@@ -58,21 +65,42 @@ module.exports = (client) => {
   kazagumo.on('playerStart', async (player, track) => {
     await setVoiceStatus(player.voiceId, `<a:shukketsu:1305529972391153724> ${track.title}`);
     const language = await getLanguage(player.guildId);
-    const embed = new EmbedBuilder()
-      .setDescription(t('player_start', language, { title: track.title, author: track.author }))
-      .setColor(process.env.DEFAULT_COLOR);
+    const requester = track.requester;
+    const remainingTime = formatDuration(track.length);
 
-    client.channels.cache.get(player.textId)?.send({ embeds: [embed] })
+    const embed = new EmbedBuilder()
+      .setDescription(`Now playing [\`${track.title}\`](${track.uri}) by **${track.author}**`)
+      .setColor(process.env.DEFAULT_COLOR)
+      .setFooter({
+        text: `Queued by ${requester.username}・${remainingTime} remaining`,
+        iconURL: requester.displayAvatarURL({ dynamic: true })
+      });
+
+    const row = new ActionRowBuilder()
+      .addComponents(
+        new ButtonBuilder()
+          .setCustomId('previous')
+          .setEmoji('<:previous:1292859351999971338>')
+          .setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder()
+          .setCustomId('pause_resume')
+          .setEmoji('<:pause:1292859373197987850>')
+          .setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder()
+          .setCustomId('skip')
+          .setEmoji('<:next:1292859390113611806>')
+          .setStyle(ButtonStyle.Secondary)
+      );
+
+    client.channels.cache.get(player.textId)?.send({ embeds: [embed], components: [row] })
       .then(x => player.data.set('message', x));
   });
 
   kazagumo.on('playerEnd', async (player) => {
-    const language = await getLanguage(player.guildId);
-    const embed = new EmbedBuilder()
-      .setDescription(t('player_end', language))
-      .setColor(process.env.DEFAULT_COLOR);
-
-    player.data.get('message')?.edit({ embeds: [embed] });
+    const message = player.data.get('message');
+    if (message) {
+      await message.delete();
+    }
   });
 
   kazagumo.on('playerEmpty', async (player) => {
@@ -84,6 +112,50 @@ module.exports = (client) => {
     client.channels.cache.get(player.textId)?.send({ embeds: [embed] })
       .then(x => player.data.set('message', x));
     player.destroy();
+  });
+
+  client.on('interactionCreate', async interaction => {
+    if (!interaction.isButton()) return;
+
+    const player = client.kazagumo.players.get(interaction.guildId);
+    if (!player) return;
+
+    const message = player.data.get('message');
+    const row = new ActionRowBuilder()
+      .addComponents(
+        new ButtonBuilder()
+          .setCustomId('previous')
+          .setEmoji('<:previous:1292859351999971338>')
+          .setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder()
+          .setCustomId('pause_resume')
+          .setEmoji(player.paused ? '<:pause:1292859373197987850>' : '<:play:1292859407868362853>')
+          .setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder()
+          .setCustomId('skip')
+          .setEmoji('<:next:1292859390113611806>')
+          .setStyle(ButtonStyle.Secondary)
+      );
+
+    switch (interaction.customId) {
+      case 'previous':
+        await player.play(player.getPrevious(true));
+        break;
+      case 'pause_resume':
+        player.pause(!player.paused);
+        const remainingTime = formatDuration(player.queue.current.length - player.position);
+        const embedData = interaction.message.embeds[0];
+        const updatedEmbed = new EmbedBuilder(embedData)
+          .setFooter({
+            text: `Queued by ${player.queue.current.requester.username}・${remainingTime} remaining`,
+            iconURL: player.queue.current.requester.displayAvatarURL({ dynamic: true })
+          });
+        await interaction.update({ embeds: [updatedEmbed], components: [row] });
+        break;
+      case 'skip':
+        player.skip();
+        break;
+    }
   });
 
   client.kazagumo = kazagumo;

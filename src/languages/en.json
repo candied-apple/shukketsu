@@ -1,6 +1,6 @@
 {
     "global_error_description": "<:deny:1276289955920085122> There was an error while executing the command. Please contact [shukketsu support](https://discord.gg/shukketsu) if the issue persists.",
-    "global_page_footer": "Page {{currentPage}} of {{totalPages}} | Showing {{start}}-{{end}} of {{totalEntries}} entries",
+    "global_page_footer": "Page {{currentPage}} of {{totalPages}}・Showing {{start}}-{{end}} of {{totalEntries}} entries",
 
     "handler_invalid_perms": "<:warning:1276238448189116517> You do not have permission to use this command.\nRequired permission: `{{permission}}`",
     "handler_no_parameters": "No parameters provided.",
@@ -276,7 +276,8 @@
 
     "player_start": "Now playing **{{title}}** by **{{author}}**",
     "player_end": "Finished playing",
-    "player_empty": "Destroyed player due to inactivity."
+    "player_empty": "Destroyed player due to inactivity.",
 
-    
+    "nuke_channel_cloned": "Channel nuked."
+
 }
