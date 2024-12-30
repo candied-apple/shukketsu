@@ -28,10 +28,7 @@ module.exports = {
       }
 
       await player.destroy();
-      const embed = new EmbedBuilder()
-        .setColor(process.env.DEFAULT_COLOR)
-        .setDescription(t('stop_success', language));
-      return message.channel.send({ embeds: [embed] });
+      await message.react('<:approve:1276238417427959818>');
     } catch (error) {
       console.error(error);
       const language = await getLanguage(message.guild.id);

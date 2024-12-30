@@ -23,10 +23,7 @@ module.exports = {
       }
 
       player.skip();
-      const embed = new EmbedBuilder()
-        .setColor(process.env.DEFAULT_COLOR)
-        .setDescription(t('skip_success', language, { title: player.queue[0]?.title, author: player.queue[0]?.author }));
-      return message.channel.send({ embeds: [embed] });
+      await message.react('<:approve:1276238417427959818>');;
     } catch (error) {
       console.error(error);
       const language = await getLanguage(message.guild.id);

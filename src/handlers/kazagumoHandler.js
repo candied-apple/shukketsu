@@ -7,9 +7,9 @@ const axios = require('axios');
 require('dotenv').config();
 
 const Nodes = [{
-  name: 'INZEWORLD.COM (DE)',
-  url: 'lava.inzeworld.com:3128',
-  auth: 'saher.inzeworld.com',
+  name: 'shukketsu',
+  url: 'shukketsu.app:2333',
+  auth: 'alpo123',
   secure: false
 }];
 
@@ -63,7 +63,7 @@ module.exports = (client) => {
   });
 
   kazagumo.on('playerStart', async (player, track) => {
-    await setVoiceStatus(player.voiceId, `<a:shukketsu:1305529972391153724> ${track.title}`);
+    await setVoiceStatus(player.voiceId, `${track.title} by ${track.author}`);
     const language = await getLanguage(player.guildId);
     const requester = track.requester;
     const remainingTime = formatDuration(track.length);

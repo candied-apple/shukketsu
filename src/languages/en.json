@@ -247,24 +247,19 @@
     "play_song_queued": "Queued the song: {{title}}.",
 
     "pause_no_player": "No player found.",
-    "pause_success": "Paused the music.",
 
     "previous_no_player": "No player found.",
     "previous_no_track": "No previous track found.",
-    "previous_playing": "Playing previous track.",
 
     "queue_no_player": "No player found.",
     "queue_empty": "The queue is empty.",
     "queue_display": "Current Queue:\n{{queue}}",
 
     "resume_no_player": "No player found.",
-    "resume_success": "Resumed the music.",
 
     "skip_no_player": "No player found.",
-    "skip_success": "Skipped to **{{title}}** by **{{author}}**.",
 
     "stop_no_player": "No player found.",
-    "stop_success": "Stopped the music and cleared the queue.",
 
     "filter_no_player": "There is no active player in this server.",
     "filter_select_placeholder": "Select a filter",
