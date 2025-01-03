@@ -287,6 +287,15 @@
     "rss_list_no_data_title": "No Data",
     "rss_list_no_data_description": "No items available.",
     "rss_list_title": "RSS Feeds",
-    "rss_list_no_feeds": "No RSS feeds found for this server."
+    "rss_list_no_feeds": "No RSS feeds found for this server.",
+
+    "ticket_setup_title": "Ticket System",
+    "ticket_setup_description": "Click the button below to create a new ticket.",
+    "ticket_create_button": "Create Ticket",
+    "ticket_thread_title": "Ticket- {{tickedId}}",
+    "ticket_thread_description": "Hello {{user}}, how can we assist you?",
+    "ticket_delete_button": "Delete Ticket",
+    "ticket_lock_button": "Lock Ticket",
+    "ticket_archive_button": "Archive Ticket"
 
 }

@@ -91,6 +91,10 @@ const dbServerDataSchema = new mongoose.Schema({
         channelId: String,
         url: String
     }],
+    ticketModRole: {
+        type: String,
+        default: null
+    },
 });
 
 dbServerDataSchema.pre('save', function(next) {
