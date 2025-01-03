@@ -273,6 +273,20 @@
     "player_end": "Finished playing",
     "player_empty": "Destroyed player due to inactivity.",
 
-    "nuke_channel_cloned": "Channel nuked."
+    "nuke_channel_cloned": "Channel nuked.",
+
+    "rss_add_invalid_channel": "Please mention a valid channel.",
+    "rss_add_server_data_not_found": "Server data not found.",
+    "rss_add_success": "RSS feed added successfully to {{channel}} with URL: {{url}}.",
+    "rss_add_channel_limit_reached": "You have reached the limit of 3 RSS feeds per channel.",
+
+    "rss_remove_invalid_channel": "Please mention a valid channel.",
+    "rss_remove_server_data_not_found": "Server data not found.",
+    "rss_remove_success": "RSS feed removed successfully from {{channel}} with URL: {{url}}.",
+
+    "rss_list_no_data_title": "No Data",
+    "rss_list_no_data_description": "No items available.",
+    "rss_list_title": "RSS Feeds",
+    "rss_list_no_feeds": "No RSS feeds found for this server."
 
 }

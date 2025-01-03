@@ -86,7 +86,11 @@ const dbServerDataSchema = new mongoose.Schema({
     autoroles: {
         type: [String],
         default: []
-    }
+    },
+    rssFeeds: [{
+        channelId: String,
+        url: String
+    }],
 });
 
 dbServerDataSchema.pre('save', function(next) {
