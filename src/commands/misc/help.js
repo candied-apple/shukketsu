@@ -9,7 +9,6 @@ module.exports = {
     example: 'help',
     parameters: [],
     flags: [],
-    permissions: ['Administrator'],
     async execute(message, args) {
         const commands = message.client.commands;
         const categories = [...new Set(commands.map(cmd => cmd.category).filter(category => category))];
