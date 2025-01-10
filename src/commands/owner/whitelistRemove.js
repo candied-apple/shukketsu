@@ -17,7 +17,7 @@ module.exports = {
 
     if (!serverId) {
       const embed = new EmbedBuilder()
-        .setColor('RED')
+        .setColor(process.env.WARNING_COLOR)
         .setDescription(t('provide_serverId', language));
       return message.channel.send({ embeds: [embed] });
     }
@@ -26,19 +26,19 @@ module.exports = {
       const result = await dbWhitelist.findOneAndDelete({ serverId: serverId });
       if (result) {
         const embed = new EmbedBuilder()
-          .setColor('GREEN')
+          .setColor(process.env.SUCCESS_COLOR)
           .setDescription(t('server_removed_from_whitelist', language, { serverId }));
         message.channel.send({ embeds: [embed] });
       } else {
         const embed = new EmbedBuilder()
-          .setColor('YELLOW')
+          .setColor(process.env.WARNING_COLOR)
           .setDescription(t('server_not_found_in_whitelist', language));
         message.channel.send({ embeds: [embed] });
       }
     } catch (err) {
       console.error(err);
       const embed = new EmbedBuilder()
-        .setColor('RED')
+        .setColor(process.env.ERROR_COLOR)
         .setDescription(t('global_error_description', language));
       message.channel.send({ embeds: [embed] });
     }

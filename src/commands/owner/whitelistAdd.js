@@ -19,7 +19,7 @@ module.exports = {
 
     if (!userId || !serverId) {
       const embed = new EmbedBuilder()
-        .setColor('RED')
+        .setColor(process.env.WARNING_COLOR)
         .setDescription(t('provide_both_userId_serverId', language));
       return message.channel.send({ embeds: [embed] });
     }
@@ -32,19 +32,19 @@ module.exports = {
     try {
       await newWhitelistEntry.save();
       const embed = new EmbedBuilder()
-        .setColor('GREEN')
+        .setColor(process.env.SUCCESS_COLOR)
         .setDescription(t('server_added_to_whitelist', language, { serverId, userId }));
       message.channel.send({ embeds: [embed] });
     } catch (err) {
       if (err.code === 11000) {
         const embed = new EmbedBuilder()
-          .setColor('YELLOW')
+          .setColor(process.env.WARNING_COLOR)
           .setDescription(t('server_already_whitelisted', language));
         message.channel.send({ embeds: [embed] });
       } else {
         console.error(err);
         const embed = new EmbedBuilder()
-          .setColor('RED')
+          .setColor(process.env.ERROR_COLOR)
           .setDescription(t('global_error_description', language));
         message.channel.send({ embeds: [embed] });
       }
