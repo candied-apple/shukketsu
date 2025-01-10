@@ -1,6 +1,6 @@
 const dbWhitelist = require('../../models/dbWhitelist');
 const { getLanguage, t } = require('../../handlers/languageHandler');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
   name: 'whitelist remove',
@@ -16,7 +16,7 @@ module.exports = {
     const language = await getLanguage(message.guild.id);
 
     if (!serverId) {
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setColor('RED')
         .setDescription(t('provide_serverId', language));
       return message.channel.send({ embeds: [embed] });
@@ -25,19 +25,19 @@ module.exports = {
     try {
       const result = await dbWhitelist.findOneAndDelete({ serverId: serverId });
       if (result) {
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setColor('GREEN')
           .setDescription(t('server_removed_from_whitelist', language, { serverId }));
         message.channel.send({ embeds: [embed] });
       } else {
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           .setColor('YELLOW')
           .setDescription(t('server_not_found_in_whitelist', language));
         message.channel.send({ embeds: [embed] });
       }
     } catch (err) {
       console.error(err);
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setColor('RED')
         .setDescription(t('global_error_description', language));
       message.channel.send({ embeds: [embed] });
