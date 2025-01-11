@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const { getLanguage, t } = require('../../handlers/languageHandler');
 
 module.exports = {
@@ -14,29 +14,75 @@ module.exports = {
     async execute(message, args) {
         try {
             const language = await getLanguage(message.guild.id);
-            const oldChannel = message.channel;
 
-            // Clone the channel
-            const newChannel = await oldChannel.clone();
+            // Create confirmation buttons
+            const row = new ActionRowBuilder().addComponents(
+                new ButtonBuilder()
+                    .setCustomId('confirm_nuke')
+                    .setLabel('Yes')
+                    .setStyle(ButtonStyle.Danger),
+                new ButtonBuilder()
+                    .setCustomId('cancel_nuke')
+                    .setLabel('No')
+                    .setStyle(ButtonStyle.Secondary)
+            );
 
-            // Delete the old channel
-            await oldChannel.delete();
+            // Send confirmation message
+            const confirmationEmbed = new EmbedBuilder()
+                .setDescription(t('nuke_confirmation', language))
+                .setColor(process.env.DEFAULT_COLOR);
 
-            // Get bot's profile photo
-            const botProfilePhoto = message.client.user.displayAvatarURL();
+            const confirmationMessage = await message.channel.send({
+                embeds: [confirmationEmbed],
+                components: [row]
+            });
 
-            // Send a message to the new channel
-            const embed = new EmbedBuilder()
-                .setDescription(t('nuke_channel_cloned', language))
-                .setColor(process.env.DEFAULT_COLOR)
-                .setImage(botProfilePhoto)
-                .setFooter({
-                    text: `${message.author.username}`,
-                    iconURL: message.author.displayAvatarURL(),
-                })
-                .setTimestamp();
+            // Create a collector to handle button interactions
+            const filter = (interaction) => interaction.user.id === message.author.id;
+            const collector = confirmationMessage.createMessageComponentCollector({ filter, time: 15000 });
 
-            newChannel.send({ embeds: [embed] });
+            collector.on('collect', async (interaction) => {
+                if (interaction.customId === 'confirm_nuke') {
+                    // Clone the channel
+                    const oldChannel = message.channel;
+                    const newChannel = await oldChannel.clone();
+
+                    // Delete the old channel
+                    await oldChannel.delete();
+
+                    // Get bot's profile photo
+                    const botProfilePhoto = message.client.user.displayAvatarURL();
+
+                    // Send a message to the new channel
+                    const embed = new EmbedBuilder()
+                        .setDescription(t('nuke_channel_cloned', language))
+                        .setColor(process.env.DEFAULT_COLOR)
+                        .setImage(botProfilePhoto)
+                        .setFooter({
+                            text: `${message.author.username}`,
+                            iconURL: message.author.displayAvatarURL(),
+                        })
+                        .setTimestamp();
+
+                    newChannel.send({ embeds: [embed] });
+                } else if (interaction.customId === 'cancel_nuke') {
+                    // Cancel the nuke operation
+                    await interaction.reply({ content: t('nuke_cancelled', language), ephemeral: true });
+                }
+
+                // Disable buttons after interaction
+                if (confirmationMessage.channel) {
+                    await confirmationMessage.edit({ components: [] });
+                }
+                collector.stop();
+            });
+
+            collector.on('end', async () => {
+                if (!collector.ended && confirmationMessage.channel) {
+                    // Disable buttons after timeout
+                    await confirmationMessage.edit({ components: [] });
+                }
+            });
         } catch (error) {
             console.error(error);
             const language = await getLanguage(message.guild.id);

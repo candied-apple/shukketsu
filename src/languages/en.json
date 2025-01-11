@@ -273,7 +273,9 @@
     "player_end": "Finished playing",
     "player_empty": "Destroyed player due to inactivity.",
 
-    "nuke_channel_cloned": "Channel nuked.",
+    "nuke_confirmation": "Are you sure you want to nuke this channel? This action cannot be undone.",
+    "nuke_channel_cloned": "The channel has been successfully nuked and cloned.",
+    "nuke_cancelled": "The nuke operation has been cancelled.",
 
     "rss_add_invalid_channel": "Please mention a valid channel.",
     "rss_add_server_data_not_found": "Server data not found.",
