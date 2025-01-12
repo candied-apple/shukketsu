@@ -298,6 +298,10 @@
     "ticket_thread_description": "Hello {{user}}, how can we assist you?",
     "ticket_delete_button": "Delete Ticket",
     "ticket_lock_button": "Lock Ticket",
-    "ticket_archive_button": "Archive Ticket"
+    "ticket_archive_button": "Archive Ticket",
+
+    "loop_invalid_option": "Invalid option. Please use 'track', 'queue', or 'off'.",
+    "loop_no_player": "No active player found.",
+    "loop_status_updated": "Loop status updated to {{option}}."
 
 }
