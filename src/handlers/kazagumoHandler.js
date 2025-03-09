@@ -7,10 +7,10 @@ const axios = require('axios');
 require('dotenv').config();
 
 const Nodes = [{
-  name: 'shukketsu',
-  url: 'shukketsu.app:2333',
-  auth: 'alpo123',
-  secure: false
+  name: 'Public Lavalink v4',
+  url: 'lava-v4.ajieblogs.eu.org:443',
+  auth: 'https://dsc.gg/ajidevserver',
+  secure: true
 }];
 
 function setVoiceStatus(channelId, status) {
